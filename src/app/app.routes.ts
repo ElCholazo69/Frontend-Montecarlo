@@ -6,6 +6,7 @@ import { SobreNosotros } from './features/pages/sobre-nosotros/sobre-nosotros';
 import { Login } from './features/auth/login/login';
 
 import { CrearConsulta } from './features/consultas/crear-consulta/crear-consulta';
+import { Registro } from './features/auth/registro/registro';
 export const routes: Routes = [
     {
         path: '',
@@ -28,7 +29,12 @@ export const routes: Routes = [
     },
 
     {
+        path: 'registro',
+        component: Registro
+    },
+
+    {
         path: '**',
         redirectTo: ''
-    }
+    } 
 ];

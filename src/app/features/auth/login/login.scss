@@ -1,0 +1,94 @@
+@use 'variables' as *;
+
+.login {
+  height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("https://img.magnific.com/foto-gratis/herramientas-deportivas_53876-138077.jpg?semt=ais_hybrid&w=740&q=80");
+  background-size: cover;
+  background-position: center;
+  
+  .contenedorLogin {
+    display: flex;
+    width: 50rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: $sombra;
+    padding: 10px;
+
+    img {
+      flex: 1;
+      width: 30%;
+      padding: 20px;
+    }
+
+    .panelFormulario {
+      flex: 1;
+      padding: 40px;
+
+      h2 {
+        margin-bottom: 25px;
+        color: $primary-color;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .campo {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            margin-bottom: 5px;
+            font-size: 14px;
+          }
+
+          input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+            &:focus {
+              outline: none;
+              border-color: $text-selection;
+            }
+          }
+        }
+
+        button {
+          margin-top: 10px;
+          background-color: $text-selection;
+          color: $text-color;
+          border: none;
+          padding: 12px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+
+          &:hover {
+            opacity: 0.85;
+          }
+        }
+      }
+
+      .registro {
+        margin-top: 15px;
+        font-size: 14px;
+
+        a {
+          color: $text-selection;
+          font-weight: bold;
+          text-decoration: none;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
