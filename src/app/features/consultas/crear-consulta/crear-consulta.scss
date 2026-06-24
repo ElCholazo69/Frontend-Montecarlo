@@ -1,0 +1,97 @@
+@use 'variables' as *;
+
+main {
+  padding: 60px 10%;
+
+  .consulta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+
+    .lado-izquierdo {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        line-height: 1.6;
+      }
+
+      img {
+        width: 50%;
+        align-self: center;
+        border-radius: 10px;
+        box-shadow: $sombra;
+      }
+
+      .contacto {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        li {
+          font-weight: 500;
+          padding: 0.3rem;
+        }
+      }
+    }
+
+    .lado-derecho {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: $sombra;
+
+      h2 {
+        margin-bottom: 25px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .campo {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            margin-bottom: 8px;
+            font-weight: bold;
+          }
+
+          select,
+          textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+          }
+
+          textarea {
+            resize: vertical;
+          }
+        }
+
+        button {
+          background-color: $button-color;
+          color: $text-color;
+          border: none;
+          padding: 12px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}

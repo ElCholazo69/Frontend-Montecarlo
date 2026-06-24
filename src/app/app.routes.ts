@@ -1,3 +1,34 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { Inicio } from './features/pages/inicio/inicio';
+import { SobreNosotros } from './features/pages/sobre-nosotros/sobre-nosotros';
+
+import { Login } from './features/auth/login/login';
+
+import { CrearConsulta } from './features/consultas/crear-consulta/crear-consulta';
+export const routes: Routes = [
+    {
+        path: '',
+        component: Inicio
+    },
+
+    {
+        path: 'sobre-nosotros',
+        component: SobreNosotros
+    },
+
+    {
+        path: 'login',
+        component: Login
+    },
+
+    {
+        path: 'consultas',
+        component: CrearConsulta
+    },
+
+    {
+        path: '**',
+        redirectTo: ''
+    }
+];

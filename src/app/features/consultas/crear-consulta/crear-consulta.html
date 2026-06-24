@@ -1,1 +1,75 @@
-<p>crear-consulta works!</p>
+<main>
+  <section class="consulta">
+    <div class="lado-izquierdo">
+
+      <h2>¿Necesitas ayuda?</h2>
+      <p>Si tienes alguna duda, inconveniente o sugerencia relacionada con
+        nuestras canchas o reservas, puedes enviarnos una consulta.</p>
+
+      <img src="image/consulta.png" alt="Atención al cliente">
+
+      <div class="contacto">
+        <h3>Información del contacto</h3>
+
+        <ul>
+            <li>montecarlo@gmail.com</li>
+            <li>+51 999 999 999</li>
+            <li>Lunes a Domingo de 8:00 a.m. a 10:00 p.m.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="lado-derecho">
+      <h2>Formulario de Consulta</h2>
+      <form (ngSubmit)="enviarConsulta()">
+        <div class="campo">
+          <label for="asunto">Tipo de Consulta</label>
+          <select
+            id="asunto"
+            name="asunto"
+            [(ngModel)]="asunto">
+            
+            <option value="">
+              Seleccione una opción
+            </option>
+
+            <option value="Consulta General">
+              Consulta General
+            </option>
+
+            <option value="Queja">
+              Queja
+            </option>
+
+            <option value="Sugerencia">
+              Sugerencia
+            </option>
+
+            <option value="Otro">
+              Otro
+            </option>
+
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="mensaje">Mensaje</label>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            rows="8"
+            [(ngModel)]="mensaje"
+            placeholder="Ingrese aquí su consulta">
+          </textarea>
+        </div>
+
+        <button type="submit">
+          Enviar Consulta
+        </button>
+      </form>
+
+    </div>
+
+  </section>
+</main>
