@@ -1,0 +1,36 @@
+header {
+  background-color: #34495e;
+  padding: 10px 30px;
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+header nav .logo img {
+  width: 60px;
+  height: auto;
+}
+header nav .logo h2 {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+header nav .links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+header nav .links li a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+header nav .links li a:hover {
+  color: #27ae60;
+}/*# sourceMappingURL=navbar.css.map */

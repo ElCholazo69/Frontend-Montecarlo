@@ -1,0 +1,47 @@
+@use 'variables' as *;
+
+header {
+  background-color: $primary-color;
+  padding: 10px 30px;
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+            width: 18%;
+            height: auto;
+        }
+
+        h2 {
+            color: $text-color;
+            font-size: 1.5vw;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+    }
+
+    .links {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+
+        li a {
+            color: $text-color;
+            cursor: pointer;
+            font-size: 1.5vw;
+            font-weight: bold;
+
+            &:hover {
+                color: $text-selection;
+            }
+        }
+    }
+  }
+}
