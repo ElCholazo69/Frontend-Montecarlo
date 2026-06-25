@@ -6,8 +6,7 @@ main {
 
   .bannerPrincipal {
     height: 70vh;
-    background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-                url("https://www.parqueygrama.com/wp-content/uploads/2018/02/canchas-de-futbol-sinteticas-grama-de-futbol.jpg");
+    background-image: linear-gradient(rgba(0,0,0,.6), #00000099), url('../../../../../public/image/bannerPrincipal.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
