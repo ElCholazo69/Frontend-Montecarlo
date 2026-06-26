@@ -5,7 +5,11 @@
       <h2>RESERVA TU CANCHA</h2>
     </div>
 
-    <ul class="links">
+    <div class="menu" (click)="toggleMenu()">
+      ☰
+    </div>
+
+    <ul class="links" [class.activo]="menuAbierto">
       <li><a routerLink="/">Inicio</a></li>
       <li><a routerLink="/canchas">Canchas</a></li>
       <li><a routerLink="/reservas">Reservas</a></li>

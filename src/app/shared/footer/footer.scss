@@ -5,6 +5,18 @@ footer {
   color: $text-color;
   text-align: center;
   padding: 20px;
-  font-size: 1.2vw;
   font-weight: bold;
+
+  p {
+    margin: 5px 0;
+    font-size: $texto-responsivo;
+  }
+}
+
+@media (max-width: 768px) {
+  footer {
+    p {
+      font-size: 15px;
+    }
+  }
 }

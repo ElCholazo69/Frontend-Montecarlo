@@ -8,5 +8,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
+  menuAbierto = false;
 
+  toggleMenu() {
+    this.menuAbierto = !this.menuAbierto;
+  }
 }
