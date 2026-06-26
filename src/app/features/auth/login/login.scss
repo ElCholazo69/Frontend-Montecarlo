@@ -56,6 +56,16 @@
               border-color: $text-selection;
             }
           }
+
+          small {
+            color: red;
+            font-size: 12px;
+            margin-top: 3px;
+          }
+
+          input.ng-invalid.ng-touched {
+            border: 1px solid red;
+          }
         }
 
         button {

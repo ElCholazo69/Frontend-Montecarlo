@@ -5,15 +5,33 @@
     <div class="panelFormulario">
       <h2>Iniciar sesión</h2>
 
-      <form>
+      <form [formGroup]="formularioLogin" (ngSubmit)="onSubmit()">
         <div class="campo">
           <label>Correo</label>
-          <input type="email" placeholder="Ingrese su correo">
+          <input type="email" placeholder="Ingrese su correo" formControlName="correo">    
+          @if (formularioLogin.get('correo')?.touched && formularioLogin.get('correo')?.errors) {
+            @if (formularioLogin.get('correo')?.errors?.['required']) {
+              <small>Campo obligatorio</small>
+            }
+
+            @if (formularioLogin.get('correo')?.errors?.['email']) {
+              <small>Correo inválido</small>
+            }
+          }
         </div>
 
         <div class="campo">
           <label>Contraseña</label>
-          <input type="password" placeholder="Ingrese su contraseña">
+          <input type="password" placeholder="Ingrese su contraseña" formControlName="password">
+          @if (formularioLogin.get('password')?.touched && formularioLogin.get('password')?.errors) {
+            @if (formularioLogin.get('password')?.errors?.['required']) {
+              <small>Campo obligatorio</small>
+            }
+
+            @if (formularioLogin.get('password')?.errors?.['minlength']) {
+              <small>Mínimo 6 caracteres</small>
+            }
+          }
         </div>
 
         <button type="submit">Ingresar</button>
