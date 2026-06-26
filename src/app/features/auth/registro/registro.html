@@ -5,35 +5,50 @@
     <div class="panelFormulario">
       <h2>Crear cuenta</h2>
 
-      <form>
+      <form [formGroup]="formularioRegistro" (ngSubmit)="onSubmit()">
         <div class="campo">
           <label>Nombre</label>
-          <input type="text" placeholder="Ingrese su nombre">
+          <input type="text" placeholder="Ingrese su nombre" formControlName="nombre">
+          @if(formularioRegistro.get('nombre')?.touched && formularioRegistro.get('nombre')?.invalid){
+            <small>Campo obligatorio</small>
+          }
         </div>
 
         <div class="campo">
           <label>Apellido</label>
-          <input type="text" placeholder="Ingrese su apellido">
+          <input type="text" placeholder="Ingrese su apellido" formControlName="apellido">
+          @if (formularioRegistro.get('apellido')?.touched && formularioRegistro.get('apellido')?.invalid) {
+            <small>Campo obligatorio</small>
+          }
         </div>
 
         <div class="campo">
           <label>Correo</label>
-          <input type="email" placeholder="Ingrese su correo">
+          <input type="email" placeholder="Ingrese su correo" formControlName="correo">
+          @if (formularioRegistro.get('correo')?.touched && formularioRegistro.get('correo')?.invalid) {
+            <small>Correo inválido</small>
+          }
         </div>
 
         <div class="campo">
           <label>Teléfono</label>
-          <input type="text" placeholder="Ingrese su número">
+          <input type="text" placeholder="Ingrese su número. Ej: 987654321" formControlName="telefono" maxlength="9">
+          @if (formularioRegistro.get('telefono')?.touched && formularioRegistro.get('telefono')?.invalid) {
+            <small>Ingrese un número válido (9 dígitos, empieza con 9)</small>
+          }
         </div>
 
         <div class="campo">
           <label>Contraseña</label>
-          <input type="password" placeholder="Ingrese su contraseña">
+          <input type="password" placeholder="Ingrese su contraseña" formControlName="password">
+          @if (formularioRegistro.get('password')?.touched && formularioRegistro.get('password')?.invalid) {
+            <small>Mínimo 6 caracteres</small>
+          }
         </div>
 
         <button type="submit">Registrarse</button>
       </form>
-
+      
       <p class="login">
         ¿Ya tienes cuenta? 
         <a routerLink="/login">Inicia sesión</a>
