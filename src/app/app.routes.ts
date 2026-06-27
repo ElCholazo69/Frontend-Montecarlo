@@ -7,6 +7,7 @@ import { Login } from './features/auth/login/login';
 
 import { CrearConsulta } from './features/consultas/crear-consulta/crear-consulta';
 import { Registro } from './features/auth/registro/registro';
+import { ListaCanchas } from './features/canchas/lista-canchas/lista-canchas';
 export const routes: Routes = [
     {
         path: '',
@@ -31,6 +32,11 @@ export const routes: Routes = [
     {
         path: 'registro',
         component: Registro
+    },
+
+    {
+        path: 'canchas',
+        component: ListaCanchas
     },
 
     {

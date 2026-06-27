@@ -1,0 +1,90 @@
+@use 'variables' as *;
+
+.paginaCanchas {
+    padding: 40px 20px;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .contenedorCanchas {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .tarjetaCancha {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: $sombra;
+            display: flex;
+            flex-direction: column;
+
+            img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .info {
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+
+                h3 {
+                    margin-bottom: 5px;
+                }
+
+                p {
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                }
+
+                span {
+                    color: $text-selection;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                }
+
+                button {
+                    background-color: $button-color;
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold;
+
+                    &:hover {
+                        opacity: 0.85;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .paginaCanchas {
+        .contenedorCanchas {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .tarjetaCancha {
+                width: 45%;
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .paginaCanchas {
+        .contenedorCanchas {
+            .tarjetaCancha {
+                width: 30%;
+            }
+        }
+    }
+}
