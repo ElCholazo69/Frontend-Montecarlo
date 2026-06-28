@@ -1,1 +1,67 @@
-<p>canchas works!</p>
+<div class="admin-container">
+  
+  <h1 class="panel-title">Panel de Administración</h1>
+
+  <div class="admin-tabs">
+    <a routerLink="/admin/canchas" routerLinkActive="tab-activa" class="tab-link">Canchas</a>
+    <a routerLink="/admin/reservas" routerLinkActive="tab-activa" class="tab-link">Reservas</a>
+    <a routerLink="/admin/pagos" routerLinkActive="tab-activa" class="tab-link">Pagos</a>
+    <a routerLink="/admin/usuarios" routerLinkActive="tab-activa" class="tab-link">Usuarios</a>
+    <a routerLink="/admin/consultas" routerLinkActive="tab-activa" class="tab-link">Consultas</a>
+  </div>
+
+  <main class="admin-content">
+    <div class="content-header">
+      <h3>Gestión de Canchas Deportivas</h3>
+      <button class="btn-nuevo">+ Nueva Cancha</button>
+    </div>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio/Hora</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>Cancha Grass Sintético 1</td>
+          <td>Fútbol 7 con iluminación LED</td>
+          <td>S/. 80.00</td>
+          <td><span class="badge disponible">Disponible</span></td>
+          <td>
+            <button class="btn-edit">✏️</button>
+            <button class="btn-delete">🗑️</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Cancha de Básquet Principal</td>
+          <td>Piso de parqué techado</td>
+          <td>S/. 60.00</td>
+          <td><span class="badge ocupado">Ocupado</span></td>
+          <td>
+            <button class="btn-edit">✏️</button>
+            <button class="btn-delete">🗑️</button>
+          </td>
+        </tr>
+      
+        <tr>
+          <td>Cancha de Tenis Arcilla</td>
+          <td>Malla regulable profesional</td>
+          <td>S/. 50.00</td>
+          <td><span class="badge reparacion">En Reparación</span></td>
+          <td>
+            <button class="btn-edit">✏️</button>
+            <button class="btn-delete">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+</div>

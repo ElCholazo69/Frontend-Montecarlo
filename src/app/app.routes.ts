@@ -9,6 +9,13 @@ import { CrearConsulta } from './features/consultas/crear-consulta/crear-consult
 import { Registro } from './features/auth/registro/registro';
 import { ListaCanchas } from './features/canchas/lista-canchas/lista-canchas';
 import { DetalleCancha } from './features/canchas/detalle-cancha/detalle-cancha';
+
+import { Canchas } from './features/admin/canchas/canchas';
+import { Reservas } from './features/admin/reservas/reservas';
+import { Pagos } from './features/admin/pagos/pagos';
+import { Usuarios } from './features/admin/usuarios/usuarios';
+import { Consultas } from './features/admin/consultas/consultas';
+
 export const routes: Routes = [
     {
         path: '',
@@ -43,6 +50,18 @@ export const routes: Routes = [
     {
         path: 'Dcanchas',
         component: DetalleCancha
+    },
+
+     {
+        path: 'admin',
+        children: [
+            { path: '', redirectTo: 'canchas', pathMatch: 'full' },
+            { path: 'canchas', component: Canchas },
+            { path: 'reservas', component: Reservas },
+            { path: 'pagos', component: Pagos },
+            { path: 'usuarios', component: Usuarios },
+            { path: 'consultas', component: Consultas }
+        ]
     },
 
     {

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-reservas',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './reservas.html',
   styleUrl: './reservas.scss',
 })
