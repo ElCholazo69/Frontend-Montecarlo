@@ -1,6 +1,6 @@
 .admin-container {
   width: 100%;
-  max-width: 1400px; 
+  max-width: 1400px;
   margin: 2rem auto;
   padding: 0 2rem;
   box-sizing: border-box;
@@ -38,7 +38,7 @@
 
     .tab-activa {
       background-color: #4CAF50; 
-      color: white !important;
+      color: white;
       border-bottom: 2px solid #4CAF50;
     }
   }
@@ -150,8 +150,6 @@
   }
 }
 
-//Medias queries para responsividad
-// Ajustes para Tablets 
 @media (max-width: 992px) {
   .admin-container {
     padding: 0 1.5rem; 
@@ -175,7 +173,6 @@
   }
 }
 
-// Ajustes para celular
 @media (max-width: 576px) {
   .admin-container {
     padding: 0 1rem;
@@ -187,17 +184,18 @@
     text-align: center;
   }
 
- 
   .admin-tabs {
     flex-wrap: nowrap; 
     overflow-x: auto;
     padding-bottom: 0.5rem;
     gap: 0.25rem;
-    
-    &::-webkit-scrollbar { display: none; } 
     -ms-overflow-style: none;  
-    scrollbar-width: none;  
+    scrollbar-width: none;
 
+    &::-webkit-scrollbar { 
+      display: none; 
+    } 
+    
     .tab-link {
       padding: 0.6rem 1rem;
       font-size: 0.85rem;
@@ -207,6 +205,7 @@
 
   .admin-content {
     padding: 1rem;
+    overflow-x: auto;
 
     .content-header {
       flex-direction: column;
@@ -217,11 +216,6 @@
       h3 { font-size: 1.3rem; }
       .btn-nuevo { width: 100%; text-align: center; } 
     }
-  }
-
-  // TABLA RESPONSIVA
-  .admin-content {
-    overflow-x: auto; 
   }
 
   .admin-table {
