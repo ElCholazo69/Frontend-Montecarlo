@@ -1,1 +1,48 @@
-<p>detalle-cancha works!</p>
+<main class="detalleCancha">
+  <div class="contenedorDetalle">
+    <div class="imagen">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg" alt="Imagen de cancha deportiva a reservar">
+    </div>
+
+    <div class="info">
+      <h2>Fútbol 7</h2>
+
+      <p class="descripcion">
+        Cancha ideal para partidos rápidos entre amigos. Césped sintético de alta calidad.
+      </p>
+
+      <div class="detalle">
+        <p><strong>Precio:</strong> S/ 80 por hora</p>
+        <p><strong>Estado:</strong> Disponible</p>
+      </div>
+
+      <form [formGroup]="formularioReserva" (ngSubmit)="onSubmit()">
+        <div class="campo">
+          <label>Fecha</label>
+          <input type="date" formControlName="fecha" [min]="fechaMinima">
+            @if (formularioReserva.get('fecha')?.touched && formularioReserva.get('fecha')?.invalid) {
+                <small>Seleccione una fecha válida</small>
+            }
+        </div>
+
+        <div class="campo">
+          <label>Hora inicio</label>
+          <input type="time" formControlName="horaInicio">
+            @if (formularioReserva.get('horaInicio')?.touched && formularioReserva.get('horaInicio')?.invalid) {
+                <small>Seleccione hora de inicio</small>
+            }
+        </div>
+
+        <div class="campo">
+          <label>Hora fin</label>
+          <input type="time" formControlName="horaFin">
+            @if (formularioReserva.get('horaFin')?.touched && formularioReserva.get('horaFin')?.invalid) {
+                <small>Seleccione hora de fin</small>
+            }
+        </div>
+
+        <button type="submit">Reservar</button>
+      </form>
+    </div>
+  </div>
+</main>

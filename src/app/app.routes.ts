@@ -8,6 +8,7 @@ import { Login } from './features/auth/login/login';
 import { CrearConsulta } from './features/consultas/crear-consulta/crear-consulta';
 import { Registro } from './features/auth/registro/registro';
 import { ListaCanchas } from './features/canchas/lista-canchas/lista-canchas';
+import { DetalleCancha } from './features/canchas/detalle-cancha/detalle-cancha';
 export const routes: Routes = [
     {
         path: '',
@@ -37,6 +38,11 @@ export const routes: Routes = [
     {
         path: 'canchas',
         component: ListaCanchas
+    },
+
+    {
+        path: 'Dcanchas',
+        component: DetalleCancha
     },
 
     {
