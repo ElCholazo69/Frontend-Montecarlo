@@ -1,1 +1,62 @@
-<p>usuarios works!</p>
+<div class="admin-contenedor">
+  <h1 class="panel-titulo">Panel de Administración</h1>
+
+  <div class="admin-seccion">
+    <a routerLink="/admin/canchas" routerLinkActive="tab-activa" class="tab-link">Canchas</a>
+    <a routerLink="/admin/reservas" routerLinkActive="tab-activa" class="tab-link">Reservas</a>
+    <a routerLink="/admin/pagos" routerLinkActive="tab-activa" class="tab-link">Pagos</a>
+    <a routerLink="/admin/usuarios" routerLinkActive="tab-activa" class="tab-link">Usuarios</a>
+    <a routerLink="/admin/consultas" routerLinkActive="tab-activa" class="tab-link">Consultas</a>
+  </div>
+
+  <div class="admin-contenido">
+    <div class="contenido-header">
+      <h3>Gestión de Usuarios Registrados</h3>
+    </div>
+
+    <table class="admin-tabla">
+      <thead>
+        <tr>
+          <th>Nombre y Apellido</th>
+          <th>Correo Electrónico</th>
+          <th>Teléfono</th>
+          <th>Rol de Cuenta</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>juan.perez@correo.com</td>
+          <td>987654321</td>
+          <td><span class="badge disponible">CLIENTE</span></td>
+          <td>
+            <button class="btn-borrar" title="Eliminar Usuario">Eliminar</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>María Luján</td>
+          <td>maria.lujan@correo.com</td>
+          <td>951753456</td>
+          <td><span class="badge disponible">CLIENTE</span></td>
+          <td>
+            <button class="btn-borrar" title="Eliminar Usuario">Eliminar</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Ricardo Gómez</td>
+          <td>ricardo.admin@canchas.com</td>
+          <td>963852741</td>
+          <td><span class="badge bloqueado">ADMIN</span></td>
+          <td>
+            <button class="btn-borrar" title="No puedes eliminar administradores" disabled>Eliminar</button>
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .admin-contenedor {
   width: 100%;
   max-width: 1400px;
@@ -7,7 +9,7 @@
 
   .panel-titulo {
     font-size: 2.2rem;
-    color: #1a1a1a;
+    color: $primary-color; 
     text-align: center;
     margin-bottom: 1.5rem;
     font-weight: 800;
@@ -31,15 +33,15 @@
       transition: all 0.3s ease;
 
       &:hover {
-        background-color: #47d883;
+        background-color: $text-selection;
         color: #0A341E;
       }
     }
 
     .tab-activa {
-      background-color: #4CAF50; 
-      color: white;
-      border-bottom: 2px solid #4CAF50;
+      background-color: $button-color; 
+      color: $text-color;              
+      border-bottom: 2px solid $button-color;
     }
   }
 
@@ -47,7 +49,7 @@
     background: #ffffff;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: $sombra; 
 
     .contenido-header {
       display: flex;
@@ -58,21 +60,21 @@
       h3 {
         margin: 0;
         font-size: 1.6rem;
-        color: #333;
+        color: $primary-color;
       }
 
       .btn-nuevo {
-        background-color: #4CAF50;
-        color: white;
+        background-color: $button-color; 
+        color: $text-color;              
         border: none;
         padding: 0.75rem 1.5rem;
         font-weight: bold;
         border-radius: 6px;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: filter 0.2s;
 
         &:hover {
-          background-color: #45a049;
+          filter: brightness(0.9);
         }
       }
     }
@@ -94,7 +96,7 @@
             vertical-align: middle;
             border-bottom: 1px solid #eee;
             font-weight: 700;
-            color: #495057;
+            color: $primary-color; 
           }
         }
       }
@@ -175,9 +177,28 @@
 
     .admin-contenido {
       padding: 1.5rem;
+      overflow-x: auto; 
+
+      .admin-tabla {
+        min-width: 650px; 
+
+        thead tr th {
+          white-space: normal; 
+        }
+        
+        tbody tr td {
+          white-space: normal; 
+          
+          .btn-editar, .btn-borrar {
+            padding: 0.5rem;
+            font-size: 1.1rem;
+          }
+        }
+      }
     }
   }
 }
+
 
 @media (max-width: 576px) {
   .admin-contenedor {
@@ -185,7 +206,7 @@
     margin: 1rem auto;
 
     .panel-titulo {
-      font-size: 1.5rem;
+      font-size: $texto-responsivo; 
     }
 
     .admin-seccion {

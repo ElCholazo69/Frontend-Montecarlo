@@ -8,5 +8,13 @@ import { RouterModule } from '@angular/router';
   styleUrl: './reservas.scss',
 })
 export class Reservas {
+  mostrarHistorial: boolean = false;
 
+  abrirHistorial(){
+    this.mostrarHistorial = true;
+  }
+
+  cerrarHistorial(){
+    this.mostrarHistorial = false;
+  }
 }
