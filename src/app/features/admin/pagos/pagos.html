@@ -1,1 +1,63 @@
-<p>pagos works!</p>
+<div class="admin-contenedor">
+  <h1 class="panel-titulo">Panel de Administración</h1>
+
+  <div class="admin-seccion">
+    <a routerLink="/admin/canchas" routerLinkActive="tab-activa" class="tab-link">Canchas</a>
+    <a routerLink="/admin/reservas" routerLinkActive="tab-activa" class="tab-link">Reservas</a>
+    <a routerLink="/admin/pagos" routerLinkActive="tab-activa" class="tab-link">Pagos</a>
+    <a routerLink="/admin/usuarios" routerLinkActive="tab-activa" class="tab-link">Usuarios</a>
+    <a routerLink="/admin/consultas" routerLinkActive="tab-activa" class="tab-link">Consultas</a>
+  </div>
+
+  <div class="admin-contenido">
+    <div class="contenido-header">
+      <h3>Historial de Pagos Recibidos</h3>
+    </div>
+
+    <table class="admin-tabla">
+      <thead>
+        <tr>
+          <th>Usuario / Cliente</th>
+          <th>Reserva ID</th>
+          <th>Monto Pagado</th>
+          <th>Fecha de Pago</th>
+          <th>Boleta Digital</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>Juan Pérez</td>
+          <td>#1042</td>
+          <td>S/. 80.00</td>
+          <td>28/06/2026 10:15 AM</td>
+          <td>
+            <button class="btn-boleta" title="Ver Boleta">Ver Boleta</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>María Luján</td>
+          <td>#1043</td>
+          <td>S/. 60.00</td>
+          <td>28/06/2026 09:30 AM</td>
+          <td>
+            <button class="btn-boleta-espera" title="Espera de aprobación" disabled>Por Emitir</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Carlos Mendoza</td>
+          <td>#1039</td>
+          <td>S/. 50.00</td>
+          <td>27/06/2026 04:30 PM</td>
+          <td>
+            <span class="texto-cancelado">Cancelado</span>
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</div>

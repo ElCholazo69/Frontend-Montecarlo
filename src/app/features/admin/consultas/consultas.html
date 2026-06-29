@@ -1,1 +1,62 @@
-<p>consultas works!</p>
+<div class="admin-contenedor">
+  <h1 class="panel-titulo">Panel de Administración</h1>
+
+  <div class="admin-seccion">
+    <a routerLink="/admin/canchas" routerLinkActive="tab-activa" class="tab-link">Canchas</a>
+    <a routerLink="/admin/reservas" routerLinkActive="tab-activa" class="tab-link">Reservas</a>
+    <a routerLink="/admin/pagos" routerLinkActive="tab-activa" class="tab-link">Pagos</a>
+    <a routerLink="/admin/usuarios" routerLinkActive="tab-activa" class="tab-link">Usuarios</a>
+    <a routerLink="/admin/consultas" routerLinkActive="tab-activa" class="tab-link">Consultas</a>
+  </div>
+
+  <div class="admin-contenido">
+    <div class="contenido-header">
+      <h3>Consultas Recibidas</h3>
+    </div>
+
+    <table class="admin-tabla">
+      <thead>
+        <tr>
+          <th>Usuario / Cliente</th>
+          <th>Asunto</th>
+          <th>Mensaje</th>
+          <th>Fecha de Envío</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>Sugerencia</td>
+          <td class="celda-mensaje">¿Las luces LED de la Cancha 1 se apagan automáticamente a la medianoche?</td>
+          <td>28/06/2026 10:15 AM</td>
+          <td>
+            <button class="btn-borrar" title="Eliminar Consulta">Eliminar Consulta</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>María Luján</td>
+          <td>Otro</td>
+          <td class="celda-mensaje">Necesito información sobre alquiler de todo el complejo para un evento empresarial este sábado.</td>
+          <td>28/06/2026 09:30 AM</td>
+          <td>
+            <button class="btn-borrar" title="Eliminar Consulta">Eliminar Consulta</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>María Luján</td>
+          <td>Otro</td>
+          <td class="celda-mensaje">Necesito información sobre alquiler de todo el complejo para un evento empresarial este sábado.</td>
+          <td>28/06/2026 09:30 AM</td>
+          <td>
+            <button class="btn-borrar" title="Eliminar Consulta">Eliminar Consulta</button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
