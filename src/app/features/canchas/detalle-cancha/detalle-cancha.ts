@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-detalle-cancha',
@@ -10,8 +11,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class DetalleCancha {
   formularioReserva: FormGroup;
   fechaMinima: string;
+  nombreCancha: string = "Fútbol 7";
+  total: number = 80;
+  precioTotal?: number;
+  imagen: string = "https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg";
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     const hoy = new Date();
     const año = hoy.getFullYear();
     const mes = String(hoy.getMonth() + 1).padStart(2, '0');
@@ -43,8 +48,8 @@ export class DetalleCancha {
       }
 
       const ahora = new Date();
+      const [hInicio, mInicio] = horaInicio.split(':').map(Number);
       if (fecha === this.fechaMinima) {
-        const [hInicio, mInicio] = horaInicio.split(':').map(Number);
         const minutosTotalesActuales = ahora.getHours() * 60 + ahora.getMinutes();
         const minutosTotalesInicio = hInicio * 60 + mInicio;
 
@@ -54,7 +59,19 @@ export class DetalleCancha {
         }
       }
 
-      console.log(this.formularioReserva.value);
+      const nombreCancha = this.nombreCancha;
+      const imagen = this.imagen;
+      const [hFin, mFin] = horaFin.split(':').map(Number);
+      const inicio = hInicio + (mInicio / 60);
+      const fin = hFin + (mFin / 60);
+      const horas = fin - inicio;
+      const precioTotal = parseFloat((this.total * horas).toFixed(2));
+      this.router.navigate(['/pago'], {
+        state: {
+          reserva: {fecha, horaInicio, horaFin, nombreCancha, precioTotal, imagen}
+        }
+      });
+      
     } else {
       this.formularioReserva.markAllAsTouched();
     }

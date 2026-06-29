@@ -15,6 +15,7 @@ import { Reservas } from './features/admin/reservas/reservas';
 import { Pagos } from './features/admin/pagos/pagos';
 import { Usuarios } from './features/admin/usuarios/usuarios';
 import { Consultas } from './features/admin/consultas/consultas';
+import { FormularioPago } from './features/pagos/formulario-pago/formulario-pago';
 
 export const routes: Routes = [
     {
@@ -52,7 +53,12 @@ export const routes: Routes = [
         component: DetalleCancha
     },
 
-     {
+    {
+        path: 'pago',
+        component: FormularioPago
+    },
+
+    {
         path: 'admin',
         children: [
             { path: '', redirectTo: 'canchas', pathMatch: 'full' },

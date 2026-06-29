@@ -1,1 +1,62 @@
-<p>formulario-pago works!</p>
+<main class="paginaPago">
+    <div class="contenedorPago">
+        <div class="resumenReserva">
+            <h2>Resumen de reserva</h2>
+            <img src="{{reserva.imagen}}" alt="Imagen de la cancha a reservar">
+            <p><strong>Cancha:</strong> {{reserva.nombreCancha}}</p>
+            <p><strong>Fecha:</strong> {{reserva.fecha}}</p>
+            <p><strong>Hora:</strong> {{reserva.horaInicio}} - {{reserva.horaFin}}</p>
+            <p><strong>Total:</strong> S/. {{reserva.precioTotal}}</p>
+        </div>
+
+        <div class="formularioPago">
+            <h2>Datos de pago</h2>
+
+            <form [formGroup]="formularioPago" (ngSubmit)="onSubmit()">
+                <div class="campo">
+                    <label>Nombre en la tarjeta</label>
+                    <input type="text" formControlName="nombreTitular" placeholder="Ingrese el nombre del titular de la tarjeta">
+                        @if (formularioPago.get('nombreTitular')?.touched && formularioPago.get('nombreTitular')?.invalid) {
+                            <small>Campo obligatorio</small>
+                        }
+                </div>
+
+                <div class="campo">
+                    <label>Número de tarjeta</label>
+                    <input type="text" formControlName="numeroTarjeta" maxlength="16" placeholder="Ingrese el numero delantero de la tarjeta">
+                        @if (formularioPago.get('numeroTarjeta')?.touched && formularioPago.get('numeroTarjeta')?.invalid) {
+                            <small>Ingrese 16 dígitos</small>
+                        }
+                </div>
+
+                <div class="fila">
+                    <div class="campo">
+                        <label>Mes</label>
+                        <input type="text" maxlength="2" formControlName="mes" placeholder="MM">
+                            @if (formularioPago.get('mes')?.touched && formularioPago.get('mes')?.invalid) {
+                            <small>Mes inválido</small>
+                            }
+                    </div>
+
+                    <div class="campo">
+                        <label>Año</label>
+                        <input type="text" maxlength="4" formControlName="anio" placeholder="YYYY">
+                            @if (formularioPago.get('anio')?.touched && formularioPago.get('anio')?.invalid) {
+                            <small>Año inválido</small>
+                            }
+                    </div>
+
+                    <div class="campo">
+                        <label>CVV</label>
+                        <input type="password" maxlength="3" formControlName="cvv" placeholder="Numeros del reverso">
+                            @if (formularioPago.get('cvv')?.touched && formularioPago.get('cvv')?.invalid) {
+                            <small>CVV inválido</small>
+                            }
+                    </div>
+                </div>
+
+                <button type="submit">Pagar</button>
+            </form>
+        </div>
+    </div>
+</main>

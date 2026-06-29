@@ -1,0 +1,135 @@
+@use 'variables' as *;
+
+.paginaPago {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+
+    .contenedorPago {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        max-width: 1000px;
+
+        .resumenReserva {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: $sombra;
+
+            h2 {
+                margin-bottom: 10px;
+            }
+
+            img {
+                width: 100%;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+
+            p {
+                margin: 5px 0;
+            }
+        }
+
+        .formularioPago {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: $sombra;
+            display: flex;
+            flex-direction: column;
+            
+            justify-content: center;
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .campo {
+                    display: flex;
+                    flex-direction: column;
+
+                    label{ 
+                        margin-bottom: 5px;
+                    }
+
+                    input {
+                        padding: 10px;
+                        border-radius: 5px;
+                        border: 1px solid #ccc;
+                        margin-bottom: 9px;
+
+                        &:focus {
+                            outline: none;
+                            border-color: $text-selection;
+                        }
+                    }
+
+                    small {
+                        color: red;
+                        font-size: 12px;
+                    }
+
+                    input.ng-invalid.ng-touched {
+                        margin-bottom: 3px;
+                        border-color: red;
+                    }
+                }
+
+                .fila {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    .campo {
+                        flex: 1;
+                    }
+                }
+
+                button {
+                    margin-top: 10px;
+                    background-color: $button-color;
+                    color: white;
+                    padding: 12px;
+                    border: none;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    cursor: pointer;
+
+                    &:hover {
+                        opacity: 0.85;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .paginaPago {
+        .contenedorPago {
+            flex-direction: row;
+
+            .resumenReserva {
+                flex: 1;
+            }
+
+            .formularioPago {
+                flex: 2;
+
+                form{
+                    .fila{
+                        flex-direction: row;
+                    }
+                }
+            }
+        }
+    }
+}
