@@ -1,1 +1,115 @@
-<p>reservas works!</p>
+<div class="admin-contenedor">
+  <h1 class="panel-titulo">Panel de Administración</h1>
+
+  <div class="admin-seccion">
+    <a routerLink="/admin/canchas" routerLinkActive="tab-activa" class="tab-link">Canchas</a>
+    <a routerLink="/admin/reservas" routerLinkActive="tab-activa" class="tab-link">Reservas</a>
+    <a routerLink="/admin/pagos" routerLinkActive="tab-activa" class="tab-link">Pagos</a>
+    <a routerLink="/admin/usuarios" routerLinkActive="tab-activa" class="tab-link">Usuarios</a>
+    <a routerLink="/admin/consultas" routerLinkActive="tab-activa" class="tab-link">Consultas</a>
+  </div>
+
+  <div class="admin-contenido">
+    <div class="contenido-header">
+      <h3>Control de Reservas Actuales</h3>
+      <button class="btn-nuevo" (click)="abrirHistorial()">Ver Historial General</button>
+    </div>
+
+    <table class="admin-tabla">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Cancha</th>
+          <th>Fecha</th>
+          <th>Horario</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>Cancha Grass Sintético 1</td>
+          <td>28/06/2026</td>
+          <td>19:00 - 20:00</td>
+          <td><span class="badge disponible">Confirmada</span></td>
+          <td>
+            <button class="btn-confirmar" title="Confirmar Reserva">Aceptar</button>
+            <button class="btn-cancelar" title="Cancelar Reserva">Rechazar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>Cancha Grass Sintético 1</td>
+          <td>28/06/2026</td>
+          <td>19:00 - 20:00</td>
+          <td><span class="badge pendiente">Pendiente</span></td>
+          <td>
+            <button class="btn-confirmar" title="Confirmar Reserva">Aceptar</button>
+            <button class="btn-cancelar" title="Cancelar Reserva">Rechazar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Carlos Mendoza</td>
+          <td>Cancha de Tenis Arcilla</td>
+          <td>30/06/2026</td>
+          <td>16:00 - 17:00</td>
+          <td><span class="badge cancelado">Cancelada</span></td>
+          <td>
+            <button class="btn-confirmar" title="Confirmar Reserva">Aceptar</button>
+            <button class="btn-cancelar" title="Cancelar Reserva">Rechazar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  @if (mostrarHistorial) {
+    <div class="historial-capa">
+      <div class="historial-ventana">
+        
+        <div class="historial-header">
+          <h3>Historial General de las Reservas</h3>
+          <button class="btn-cerrar" (click)="cerrarHistorial()">✕</button>
+        </div>
+
+        <div class="historial-cuerpo">
+          <div class="buscador-bloque">
+            <input type="text" placeholder="Buscar por nombre de usuario..." class="input-buscar">
+          </div>
+
+          <table class="historial-tabla">
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Reserva ID</th>
+                <th>Cancha</th>
+                <th>Estado Anterior/Nuevo</th>
+                <th>Fecha de Cambio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Juan Pérez</td>
+                <td>#1042</td>
+                <td>Cancha Grass Sintético 1</td>
+                <td><span class="badge confirmado">Confirmada</span></td>
+                <td>28/06/2026 10:15 AM</td>
+              </tr>
+              <tr>
+                <td>Carlos Mendoza</td>
+                <td>#1039</td>
+                <td>Cancha de Tenis Arcilla</td>
+                <td><span class="badge cancelado">Cancelada</span></td>
+                <td>27/06/2026 04:30 PM</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  }
+
+</div>
