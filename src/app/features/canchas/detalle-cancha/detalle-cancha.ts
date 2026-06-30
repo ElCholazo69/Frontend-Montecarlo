@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router} from "@angular/router";
+import { Cancha } from '../../../models/cancha';
+import { Reserva } from '../../../models/reserva';
 
 @Component({
   selector: 'app-detalle-cancha',
@@ -8,13 +10,12 @@ import { Router} from "@angular/router";
   templateUrl: './detalle-cancha.html',
   styleUrl: './detalle-cancha.scss',
 })
-export class DetalleCancha {
+export class DetalleCancha implements OnInit{
+  cancha?:Cancha;
+  imagen: string = "";
   formularioReserva: FormGroup;
   fechaMinima: string;
-  nombreCancha: string = "Fútbol 7";
-  total: number = 80;
   precioTotal?: number;
-  imagen: string = "https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg";
 
   constructor(private fb: FormBuilder, private router: Router) {
     const hoy = new Date();
@@ -28,6 +29,11 @@ export class DetalleCancha {
       horaInicio: ['', Validators.required],
       horaFin: ['', Validators.required]
     });
+  }
+
+  ngOnInit(): void {
+    this.cancha = history.state.reserva.cancha
+    this.imagen = history.state.reserva.imagen
   }
   
   onSubmit() {
@@ -49,6 +55,7 @@ export class DetalleCancha {
 
       const ahora = new Date();
       const [hInicio, mInicio] = horaInicio.split(':').map(Number);
+      const [hFin, mFin] = horaFin.split(':').map(Number);
       if (fecha === this.fechaMinima) {
         const minutosTotalesActuales = ahora.getHours() * 60 + ahora.getMinutes();
         const minutosTotalesInicio = hInicio * 60 + mInicio;
@@ -59,16 +66,24 @@ export class DetalleCancha {
         }
       }
 
-      const nombreCancha = this.nombreCancha;
+      const cancha = this.cancha;
+      const reserva:Reserva ={
+        estado: "ACTIVA",
+        fecha: fecha,
+        hora_fin: horaFin,
+        hora_inicio: horaInicio,
+        cancha_id: this.cancha?.id_cancha ?? 1,
+        usuario_id: 1
+      };
       const imagen = this.imagen;
-      const [hFin, mFin] = horaFin.split(':').map(Number);
+      const total = this.cancha?.precioHora ?? 0;
       const inicio = hInicio + (mInicio / 60);
       const fin = hFin + (mFin / 60);
       const horas = fin - inicio;
-      const precioTotal = parseFloat((this.total * horas).toFixed(2));
+      const precioTotal = parseFloat((total * horas).toFixed(2));
       this.router.navigate(['/pago'], {
         state: {
-          reserva: {fecha, horaInicio, horaFin, nombreCancha, precioTotal, imagen}
+          reserva: { cancha, reserva, imagen, precioTotal}
         }
       });
       

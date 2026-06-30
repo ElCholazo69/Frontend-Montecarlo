@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Cancha } from '../../../models/cancha';
+import { Reserva } from '../../../models/reserva';
 
 @Component({
   selector: 'app-formulario-pago',
@@ -9,10 +11,16 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class FormularioPago implements OnInit{
   formularioPago: FormGroup;
-  reserva: any;
+  cancha?: Cancha;
+  reserva?: Reserva;
+  imagen: string = "";
+  precioTotal: number = 0;
   
   ngOnInit(): void {
-    this.reserva = history.state.reserva;
+    this.cancha = history.state.reserva.cancha
+    this.reserva = history.state.reserva.reserva;
+    this.imagen = history.state.reserva.imagen;
+    this.precioTotal = history.state.reserva.precioTotal;
   }
 
   constructor(private fb: FormBuilder) {
@@ -32,5 +40,12 @@ export class FormularioPago implements OnInit{
     } else {
       this.formularioPago.markAllAsTouched();
     }
+  }
+
+  formatearHora(h: string): string {
+    const [hora, minutos] = h.split(':').map(Number);
+    const periodo = hora >= 12 ? 'PM' : 'AM';
+    const hora12 = hora % 12 || 12;
+    return `${hora12}:${minutos.toString().padStart(2, '0')} ${periodo}`;
   }
 }

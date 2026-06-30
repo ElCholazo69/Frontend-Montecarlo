@@ -2,37 +2,17 @@
   <h2>Nuestras Canchas</h2>
 
   <div class="contenedorCanchas">
-    <div class="tarjetaCancha">
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg" alt="Imagen de cancha deportiva">
+    @for (item of canchas; track $index) {
+      <div class="tarjetaCancha">
+        <img src="{{imagen}}" alt="Imagen de cancha deportiva">
       
-      <div class="info">
-        <h3>Fútbol 7</h3>
-        <p>Ideal para partidos rápidos entre amigos.</p>
-        <span>S/ 80 por hora</span>
-        <button routerLink="/Dcanchas">Reservar</button>
+        <div class="info">
+          <h3>{{item.nombre}}</h3>
+          <p>{{item.descripcion}}</p>
+          <span>S/. {{item.precioHora}} por hora</span>
+          <button (click)="irDetalles(item)">Reservar</button>
+        </div>
       </div>
-    </div>
-
-    <div class="tarjetaCancha">
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg" alt="Imagen de cancha deportiva">
-
-      <div class="info">
-        <h3>Fútbol 11</h3>
-        <p>Perfecta para partidos completos.</p>
-        <span>S/ 150 por hora</span>
-        <button>Reservar</button>
-      </div>
-    </div>
-
-    <div class="tarjetaCancha">
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg" alt="Imagen de cancha deportiva">
-
-      <div class="info">
-        <h3>Multideporte</h3>
-        <p>Vóley, básquet y más.</p>
-        <span>S/ 60 por hora</span>
-        <button>Reservar</button>
-      </div>
-    </div>
+    }
   </div>
 </main>

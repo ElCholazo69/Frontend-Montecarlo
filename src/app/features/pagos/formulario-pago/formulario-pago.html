@@ -2,11 +2,12 @@
     <div class="contenedorPago">
         <div class="resumenReserva">
             <h2>Resumen de reserva</h2>
-            <img src="{{reserva.imagen}}" alt="Imagen de la cancha a reservar">
-            <p><strong>Cancha:</strong> {{reserva.nombreCancha}}</p>
-            <p><strong>Fecha:</strong> {{reserva.fecha}}</p>
-            <p><strong>Hora:</strong> {{reserva.horaInicio}} - {{reserva.horaFin}}</p>
-            <p><strong>Total:</strong> S/. {{reserva.precioTotal}}</p>
+            <img src="{{imagen}}" alt="Imagen de la cancha a reservar">
+            <p><strong>Cancha:</strong> {{cancha?.nombre}}</p>
+            <p><strong>Descripcion:</strong> {{cancha?.descripcion}}</p>
+            <p><strong>Fecha:</strong> {{reserva?.fecha}}</p>
+            <p><strong>Hora:</strong> {{formatearHora(reserva?.hora_inicio ?? "0")}} - {{formatearHora(reserva?.hora_fin ?? "0")}}</p>
+            <p><strong>Total:</strong> S/. {{precioTotal}}</p>
         </div>
 
         <div class="formularioPago">

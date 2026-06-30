@@ -5,15 +5,15 @@
     </div>
 
     <div class="info">
-      <h2>{{nombreCancha}}</h2>
+      <h2>{{cancha?.nombre}}</h2>
 
       <p class="descripcion">
-        Cancha ideal para partidos rápidos entre amigos. Césped sintético de alta calidad.
+        {{cancha?.descripcion}}
       </p>
 
       <div class="detalle">
-        <p><strong>Precio:</strong> S/. {{total}} por hora</p>
-        <p><strong>Estado:</strong> Disponible</p>
+        <p><strong>Precio:</strong> S/. {{cancha?.precioHora}} por hora</p>
+        <p><strong>Estado:</strong> {{cancha?.estado ? "Disponible" : "No disponible"}}</p>
       </div>
 
       <form [formGroup]="formularioReserva" (ngSubmit)="onSubmit()">
