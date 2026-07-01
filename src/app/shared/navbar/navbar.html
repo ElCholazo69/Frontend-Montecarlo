@@ -13,9 +13,13 @@
       <li><a routerLink="/">Inicio</a></li>
       <li><a routerLink="/canchas">Canchas</a></li>
       <li><a routerLink="/reservas">Reservas</a></li>
-      <li><a routerLink="/sobre-nosotros">Nosotros</a></li>
       <li><a routerLink="/consultas">Consultas</a></li>
-      <li><a routerLink="/login">Login</a></li>
+
+      @if (estaLogueado()) {
+        <li><a (click)="salir()" class="link-salir">Cerrar Sesión</a></li>
+      } @else{
+        <li><a routerLink="/login">Login</a></li>
+      }
     </ul>
   </nav>
 </header>

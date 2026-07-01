@@ -51,6 +51,16 @@ header {
                 color: $text-selection;
             }
         }
+        &.link-salir {
+            cursor: pointer; 
+            font-weight: bold;
+            color: $text-color; 
+
+            &:hover {
+              color: #ff4d4d;   
+              background-color: transparent; 
+            }
+        }
     }
   }
 }
@@ -77,8 +87,15 @@ header {
 
                 li {
                     text-align: right;
+                
+                    a{
+                        &.link-salir {
+                            &:hover {
+                            color: #ff4d4d;
+                            }
+                        }
+                    }
                 }
-
                 &.activo {
                     display: flex;
                 }
