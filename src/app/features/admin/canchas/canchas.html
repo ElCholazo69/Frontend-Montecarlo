@@ -12,7 +12,7 @@
   <div class="admin-contenido">
     <div class="contenido-header">
       <h3>Gestión de Canchas Deportivas</h3>
-      <button class="btn-nuevo">+ Nueva Cancha</button>
+      <button class="btn-nuevo" (click)="abrirTablaCrear()">+ Nueva Cancha</button>
     </div>
 
     <table class="admin-tabla">
@@ -33,7 +33,7 @@
           <td>S/. 80.00</td>
           <td><span class="badge disponible">Disponible</span></td>
           <td>
-            <button class="btn-editar">✏️</button>
+            <button class="btn-editar" (click)="mostrarTablaEditar()">✏️</button>
             <button class="btn-borrar">🗑️</button>
           </td>
         </tr>
@@ -44,7 +44,7 @@
           <td>S/. 60.00</td>
           <td><span class="badge ocupado">Ocupado</span></td>
           <td>
-            <button class="btn-editar">✏️</button>
+            <button class="btn-editar" (click)="mostrarTablaEditar()">✏️</button>
             <button class="btn-borrar">🗑️</button>
           </td>
         </tr>
@@ -55,11 +55,61 @@
           <td>S/. 50.00</td>
           <td><span class="badge reparacion">En Reparación</span></td>
           <td>
-            <button class="btn-editar">✏️</button>
+            <button class="btn-editar" (click)="mostrarTablaEditar()">✏️</button>
             <button class="btn-borrar">🗑️</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  @if(mostrarTabla) {
+    <div class="cancha-capa">
+      <div class="cancha-ventana">
+
+        <div class="cancha-header">
+          <h3>{{ esEdicion ? 'Editar Cancha Registrada' : 'Registrar Nueva Cancha' }}</h3>
+          <button class="btn-cerrar" (click)="cerrarTabla()">X</button>
+        </div>
+
+        <div class="cancha-cuerpo">
+          <form class="formulario-cancha">
+            
+            <div class="campo-grupo">
+              <label>Nombre de la Cancha:</label>
+              <input type="text" placeholder="Ej: Cancha Grass 2" class="input-cancha">
+            </div>
+
+            <div class="campo-grupo">
+              <label>Precio por Hora (S/.):</label>
+              <input type="number" placeholder="Ej: 80.00" class="input-cancha" min="0">
+            </div>
+
+            <div class="campo-grupo">
+              <label>Estado Operativo:</label>
+              <select class="select-cancha">
+                <option value="true">Disponible</option>
+                <option value="true">Ocupado</option>
+                <option value="false">En Reparación</option>
+              </select>
+            </div>
+
+            <div class="campo-grupo completo">
+              <label>Descripción del Espacio:</label>
+              <textarea placeholder="Detalles de la cancha..." class="textarea-cancha" rows="3"></textarea>
+            </div>
+
+            <div class="formulario-acciones">
+              <button type="button" class="btn-cancelar-modal" (click)="cerrarTabla()">Cancelar</button>
+              <button type="submit" class="btn-guardar-cancha">
+                {{ esEdicion ? 'Guardar Cambios' : 'Crear Cancha' }}
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  }
 </div>

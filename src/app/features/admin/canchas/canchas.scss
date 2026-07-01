@@ -156,6 +156,145 @@
       }
     }
   }
+
+  // 🎯 ANIDACIÓN DEL NUEVO MODAL: Concentrado al 100% dentro de la clase maestra
+  .cancha-capa {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .cancha-ventana {
+      background-color: #ffffff;
+      width: 85%;
+      max-width: 600px;
+      border-radius: 16px;
+      box-shadow: $sombra;
+      padding: 2.5rem;
+      display: flex;            
+      flex-direction: column;
+
+      .cancha-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 1.2rem;
+        margin-bottom: 1.5rem;
+
+        h3 {
+          margin: 0;
+          font-size: 1.5rem;
+          color: $primary-color; 
+        }
+
+        .btn-cerrar {
+          background: none;
+          border: none;
+          font-size: 1.2rem;
+          color: #999;
+          cursor: pointer;
+          transition: color 0.2s;
+
+          &:hover {
+            color: #ff4d4d; 
+          }
+        }
+      }
+
+      .cancha-cuerpo {
+        .formulario-cancha {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1.25rem;
+
+          .campo-grupo {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+            min-width: 240px;
+
+            &.completo {
+              flex: auto;
+              width: 100%;
+            }
+
+            label {
+              font-size: 0.85rem;
+              font-weight: 600;
+              color: #666;
+            }
+
+            .input-cancha, .select-cancha, .textarea-cancha {
+              padding: 0.75rem 1rem;
+              font-size: 0.95rem;
+              border: 1px solid #ccc;
+              border-radius: 8px;
+              outline: none;
+              background-color: #f8f9fa;
+              font-family: inherit;
+              transition: border-color 0.2s;
+
+              &:focus {
+                border-color: $text-selection;
+              }
+            }
+
+            .textarea-cancha {
+              resize: vertical;
+            }
+          }
+
+          .formulario-acciones {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid #eee;
+            padding-top: 1.25rem;
+
+            .btn-cancelar-modal {
+              background-color: #f5f5f5;
+              color: #555;
+              border: none;
+              padding: 0.75rem 1.5rem;
+              font-weight: 600;
+              border-radius: 6px;
+              cursor: pointer;
+              transition: background 0.2s;
+
+              &:hover {
+                background-color: #e0e0e0;
+              }
+            }
+
+            .btn-guardar-cancha {
+              background-color: $button-color;
+              color: $text-color;
+              border: none;
+              padding: 0.75rem 1.5rem;
+              font-weight: bold;
+              border-radius: 6px;
+              cursor: pointer;
+              transition: filter 0.2s;
+
+              &:hover {
+                filter: brightness(0.9);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 992px) {

@@ -16,59 +16,97 @@ import { Pagos } from './features/admin/pagos/pagos';
 import { Usuarios } from './features/admin/usuarios/usuarios';
 import { Consultas } from './features/admin/consultas/consultas';
 import { FormularioPago } from './features/pagos/formulario-pago/formulario-pago';
+import { authGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin.guard';
+import { MisReservas } from './features/reservas/mis-reservas/mis-reservas';
 
 export const routes: Routes = [
     {
+    path: '',
+    component: Inicio
+  },
+
+  {
+    path: 'sobre-nosotros',
+    component: SobreNosotros
+  },
+
+  {
+    path: 'login',
+    component: Login
+  },
+
+  {
+    path: 'registro',
+    component: Registro
+  },
+
+  {
+    path: 'canchas',
+    component: ListaCanchas
+  },
+
+  {
+    path: 'Dcanchas',
+    component: DetalleCancha
+  },
+
+  {
+    path: 'consultas',
+    canActivate: [authGuard],
+    component: CrearConsulta
+  },
+
+  {
+    path: 'pago',
+    canActivate: [authGuard],
+    component: FormularioPago
+  },
+
+  {
+    path: 'reservas',
+    canActivate: [authGuard],
+    component: MisReservas
+  },
+
+  {
+    path: 'admin',
+    canActivate: [adminGuard],
+    children: [
+
+      {
         path: '',
-        component: Inicio
-    },
+        redirectTo: 'canchas',
+        pathMatch: 'full'
+      },
 
-    {
-        path: 'sobre-nosotros',
-        component: SobreNosotros
-    },
-
-    {
-        path: 'login',
-        component: Login
-    },
-
-    {
-        path: 'consultas',
-        component: CrearConsulta
-    },
-
-    {
-        path: 'registro',
-        component: Registro
-    },
-
-    {
+      {
         path: 'canchas',
-        component: ListaCanchas
-    },
+        component: Canchas
+      },
 
-    {
-        path: 'Dcanchas',
-        component: DetalleCancha
-    },
+      {
+        path: 'reservas',
+        component: Reservas
+      },
 
-    {
-        path: 'pago',
-        component: FormularioPago
-    },
+      {
+        path: 'pagos',
+        component: Pagos
+      },
 
-    {
-        path: 'admin',
-        children: [
-            { path: '', redirectTo: 'canchas', pathMatch: 'full' },
-            { path: 'canchas', component: Canchas },
-            { path: 'reservas', component: Reservas },
-            { path: 'pagos', component: Pagos },
-            { path: 'usuarios', component: Usuarios },
-            { path: 'consultas', component: Consultas }
-        ]
-    },
+      {
+        path: 'usuarios',
+        component: Usuarios
+      },
+
+      {
+        path: 'consultas',
+        component: Consultas
+      }
+
+    ]
+  },
 
     {
         path: '**',

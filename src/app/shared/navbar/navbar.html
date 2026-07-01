@@ -2,7 +2,15 @@
   <nav>
     <div class="logo">
       <img src="image/logo.png" alt="logo del Club Deportivo Montecarlo">
-      <h2>RESERVA TU CANCHA</h2>
+
+      <h2>
+        @if (authService.isAdmin()) {
+          PANEL DE CONTROL
+        } @else {
+          RESERVA TU CANCHA
+        }
+      </h2>
+
     </div>
 
     <div class="menu" (click)="toggleMenu()">
@@ -10,16 +18,43 @@
     </div>
 
     <ul class="links" [class.activo]="menuAbierto">
-      <li><a routerLink="/">Inicio</a></li>
-      <li><a routerLink="/canchas">Canchas</a></li>
-      <li><a routerLink="/reservas">Reservas</a></li>
-      <li><a routerLink="/consultas">Consultas</a></li>
 
-      @if (estaLogueado()) {
-        <li><a (click)="salir()" class="link-salir">Cerrar Sesión</a></li>
-      } @else{
+      @if (!authService.logueadoSignal()) {
+
+        <li><a routerLink="/">Inicio</a></li>
+
+        <li><a routerLink="/canchas">Canchas</a></li>
+
         <li><a routerLink="/login">Login</a></li>
+
       }
+
+      @if (authService.isCliente()) {
+
+        <li><a routerLink="/">Inicio</a></li>
+
+        <li><a routerLink="/canchas">Canchas</a></li>
+
+        <li><a routerLink="/reservas">Reservas</a></li>
+
+        <li><a routerLink="/consultas">Consultas</a></li>
+
+        <li><a (click)="salir()" class="link-salir">
+          Cerrar Sesión
+        </a></li>
+
+      }
+
+      @if (authService.isAdmin()) {
+
+        <li>
+          <a (click)="salir()" class="link-salir">
+            Cerrar Sesión
+          </a>
+        </li>
+
+      }
+
     </ul>
   </nav>
 </header>

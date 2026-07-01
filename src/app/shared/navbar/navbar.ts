@@ -11,17 +11,13 @@ import { AuthService } from '../../services/auth.service';
 export class Navbar {
   menuAbierto = false;
 
-   constructor(public authService: AuthService) {} 
+  constructor(public authService: AuthService) {}
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.menuAbierto = !this.menuAbierto;
   }
 
-  estaLogueado():boolean{
-    return !!localStorage.getItem('token');
-  }
-
-  salir(){
+  salir(): void {
     this.menuAbierto = false;
     this.authService.cerrarSesion();
   }

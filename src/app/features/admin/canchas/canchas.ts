@@ -8,5 +8,20 @@ import { RouterModule } from '@angular/router';
   styleUrl: './canchas.scss',
 })
 export class Canchas {
+  mostrarTabla: boolean = false;
+  esEdicion: boolean = false;
 
+  abrirTablaCrear(){
+    this.esEdicion = false;
+    this.mostrarTabla = true;
+  }
+
+  mostrarTablaEditar(){
+    this.esEdicion = true;
+    this.mostrarTabla = true;
+  }
+
+  cerrarTabla(){
+    this.mostrarTabla = false;
+  }
 }

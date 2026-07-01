@@ -1,30 +1,22 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
-export const adminGuard: CanActivateFn = (route, state) => {
+export const adminGuard: CanActivateFn = () => {
+
+  const authService = inject(AuthService);
   const router = inject(Router);
-  const token = localStorage.getItem('token');
 
-  if (!token) {
+  if (!authService.logueadoSignal()) {
     router.navigate(['/login']);
     return false;
   }
 
-  try {
-    const payloadBase64 = token.split('.')[1];
-    const datosDescifrados = JSON.parse(atob(payloadBase64));
-    const rolUsuario = datosDescifrados.role || datosDescifrados.rol;
-
-    if (rolUsuario === 'ADMIN') {
-      return true;
-    }
-
-    router.navigate(['/']);
-    return false;
-
-  } catch (error) {
-    localStorage.removeItem('token');
-    router.navigate(['/login']);
-    return false;
+  if (authService.isAdmin()) {
+    return true;
   }
+
+  router.navigate(['/']);
+  return false;
+
 };

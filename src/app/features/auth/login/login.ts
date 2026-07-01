@@ -32,8 +32,10 @@ export class Login {
         next: (data) =>{
           console.log("Token: "+ data.token)
           
-          const auth:Auth ={
-            token: data.token
+          if(this.authService.isAdmin()){
+            this.router.navigate(['/admin/canchas'])
+          }else{
+            this.router.navigate(['/'])
           }
         },
         error: (err) =>{
