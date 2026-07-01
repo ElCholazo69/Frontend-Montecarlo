@@ -1,7 +1,7 @@
 export interface Cancha{
-    id_cancha?:number
+    id?:number
     descripcion:string
-    estado:Boolean
+    estado:boolean
     nombre:string
     precioHora:number
 }

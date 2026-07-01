@@ -4,6 +4,11 @@
 
     <div class="panelFormulario">
       <h2>Iniciar sesión</h2>
+      @if (mensaje) {
+        <div class="mensaje">
+          {{mensaje}}
+        </div>
+      }
 
       <form [formGroup]="formularioLogin" (ngSubmit)="onSubmit()">
         <div class="campo">

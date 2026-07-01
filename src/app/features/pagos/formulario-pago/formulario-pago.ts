@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
+import {Router} from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Cancha } from '../../../models/cancha';
+import { PagoRegistro } from '../../../models/pago-registro';
 import { Reserva } from '../../../models/reserva';
+import { PagoService } from '../../../services/pago.service';
 
 @Component({
   selector: 'app-formulario-pago',
@@ -17,13 +20,28 @@ export class FormularioPago implements OnInit{
   precioTotal: number = 0;
   
   ngOnInit(): void {
-    this.cancha = history.state.reserva.cancha
-    this.reserva = history.state.reserva.reserva;
-    this.imagen = history.state.reserva.imagen;
-    this.precioTotal = history.state.reserva.precioTotal;
+      if (!history.state.datosReserva) {
+      this.router.navigate(['/canchas']);
+      return;
+    }
+
+    const datos = history.state.datosReserva;
+
+    this.cancha = datos.cancha;
+    this.imagen = datos.imagen;
+    this.precioTotal = datos.precioTotal;
+
+    this.reserva = {
+      fecha: datos.fecha,
+      horaInicio: datos.horaInicio,
+      horaFin: datos.horaFin,
+      canchaId: datos.canchaId,
+      estado: '',
+      usuarioId: 0
+    };
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private pagoService: PagoService, private router: Router) {
     this.formularioPago = this.fb.group({
       nombreTitular: ['', Validators.required],
       numeroTarjeta: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
@@ -34,12 +52,57 @@ export class FormularioPago implements OnInit{
   }
 
   onSubmit() {
-    if (this.formularioPago.valid) {
-      console.log(this.formularioPago.value);
-
-    } else {
+      if (!this.formularioPago.valid) {
       this.formularioPago.markAllAsTouched();
+      return;
     }
+
+    const pago: PagoRegistro = {
+
+      canchaId: this.reserva!.canchaId,
+
+      fecha: this.reserva!.fecha,
+
+      horaInicio: this.reserva!.horaInicio,
+
+      horaFin: this.reserva!.horaFin,
+
+      numeroTarjeta: this.formularioPago.value.numeroTarjeta,
+
+      nombreTitular: this.formularioPago.value.nombreTitular,
+
+      cvv: this.formularioPago.value.cvv,
+
+      fechaExpiracion:
+        `${this.formularioPago.value.mes}/${this.formularioPago.value.anio.slice(-2)}`
+
+    };
+
+    this.pagoService.procesarPago(pago).subscribe({
+
+      next: (respuesta) => {
+
+        alert("Pago realizado correctamente.");
+
+        console.log(respuesta);
+
+        this.router.navigate(['/reservas']);
+
+      },
+
+      error: (error) => {
+
+        console.error(error);
+
+        if (error.error?.message) {
+          alert(error.error.message);
+        } else {
+          alert("No se pudo procesar el pago.");
+        }
+
+      }
+
+    });
   }
 
   formatearHora(h: string): string {

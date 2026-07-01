@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router} from "@angular/router";
 import { Cancha } from '../../../models/cancha';
-import { Reserva } from '../../../models/reserva';
 
 @Component({
   selector: 'app-detalle-cancha',
@@ -15,7 +14,6 @@ export class DetalleCancha implements OnInit{
   imagen: string = "";
   formularioReserva: FormGroup;
   fechaMinima: string;
-  precioTotal?: number;
 
   constructor(private fb: FormBuilder, private router: Router) {
     const hoy = new Date();
@@ -32,6 +30,11 @@ export class DetalleCancha implements OnInit{
   }
 
   ngOnInit(): void {
+    if(!history.state.reserva){
+      this.router.navigate(['/canchas']);
+      return;
+    }
+
     this.cancha = history.state.reserva.cancha
     this.imagen = history.state.reserva.imagen
   }
@@ -66,29 +69,37 @@ export class DetalleCancha implements OnInit{
         }
       }
 
-      const cancha = this.cancha;
-      const reserva:Reserva ={
-        estado: "ACTIVA",
-        fecha: fecha,
-        hora_fin: horaFin,
-        hora_inicio: horaInicio,
-        cancha_id: this.cancha?.id_cancha ?? 1,
-        usuario_id: 1
-      };
-      const imagen = this.imagen;
-      const total = this.cancha?.precioHora ?? 0;
       const inicio = hInicio + (mInicio / 60);
       const fin = hFin + (mFin / 60);
-      const horas = fin - inicio;
-      const precioTotal = parseFloat((total * horas).toFixed(2));
+
+      if (fin <= inicio) {
+      alert('La duración de la reserva debe ser mayor a 0 minutos.');
+      return;
+    }
+
+      const precioHora = this.cancha?.precioHora ?? 0;
+      const precioTotal = Number(((fin - inicio) * precioHora).toFixed(2));
+
+      const datosReserva ={
+        canchaId: this.cancha?.id,
+        fecha,
+        horaInicio,
+        horaFin,
+        cancha: this.cancha,
+        imagen: this.imagen,
+        precioTotal
+      };
+      console.log(this.cancha);
       this.router.navigate(['/pago'], {
         state: {
-          reserva: { cancha, reserva, imagen, precioTotal}
+          datosReserva
         }
       });
-      
+
     } else {
+
       this.formularioReserva.markAllAsTouched();
+
     }
   }
 }
