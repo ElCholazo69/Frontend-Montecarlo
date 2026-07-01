@@ -1,4 +1,4 @@
-export interface Login{
+export interface Login_Model{
     correo:string
     password:string
 }

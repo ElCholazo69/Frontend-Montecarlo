@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Login } from '../models/login';
+import { Login_Model } from '../models/login-model';
 import { Auth } from '../models/auth';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private http:HttpClient){}
 
-  generarToken(login:Login):Observable<Auth>{
+  generarToken(login:Login_Model):Observable<Auth>{
     return this.http.post<Auth>(`${this.backendURL}/auth/login`, login)
   }
 }

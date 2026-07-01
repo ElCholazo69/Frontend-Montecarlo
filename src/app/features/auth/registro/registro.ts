@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { UsuarioService } from '../../../services/usuario.service';
+import { Usuario } from '../../../models/usuario';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { RouterLink } from '@angular/router';
 export class Registro {
   formularioRegistro: FormGroup
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private usuarioService:UsuarioService, private router:Router) {
     this.formularioRegistro = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
@@ -24,8 +26,23 @@ export class Registro {
 
   onSubmit() {
     if (this.formularioRegistro.valid) {
-      console.log(this.formularioRegistro.value);
+      const usuario:Usuario = {
+        apellido: this.formularioRegistro.value.apellido,
+        correo: this.formularioRegistro.value.correo,
+        nombre: this.formularioRegistro.value.nombre,
+        password: this.formularioRegistro.value.password,
+        rol: 'CLIENTE',
+        telefono: this.formularioRegistro.value.telefono
+      }
 
+      this.usuarioService.crearUsuario(usuario).subscribe({
+        next: (data) => {
+          this.router.navigate(['/login'])
+        },
+        error: (err) =>{
+          console.error(err)
+        }
+      })
     } else {
       this.formularioRegistro.markAllAsTouched();
     }

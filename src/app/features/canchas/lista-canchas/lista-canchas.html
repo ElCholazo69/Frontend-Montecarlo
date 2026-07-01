@@ -3,7 +3,8 @@
 
   <div class="contenedorCanchas">
     @for (item of canchas; track $index) {
-      <div class="tarjetaCancha">
+      @if (item.estado==true) {
+        <div class="tarjetaCancha">
         <img src="{{imagen}}" alt="Imagen de cancha deportiva">
       
         <div class="info">
@@ -13,6 +14,7 @@
           <button (click)="irDetalles(item)">Reservar</button>
         </div>
       </div>
+      }
     }
   </div>
 </main>
