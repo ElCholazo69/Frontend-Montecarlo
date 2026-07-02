@@ -38,9 +38,9 @@ numeroReservaSeleccionada = 0;
 
     this.reservaSeleccionada = reserva;
 
-    this.numeroReservaSeleccionada = indice + 1;
+    this.numeroReservaSeleccionada = this.reservas.length - indice;
 
-    this.canchaService.obtenerCanchaPorId(reserva.id!).subscribe({
+    this.canchaService.obtenerCanchaPorId(reserva.canchaId!).subscribe({
 
       next: (cancha) => {
 
