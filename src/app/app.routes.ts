@@ -48,6 +48,7 @@ export const routes: Routes = [
 
   {
     path: 'Dcanchas',
+    canActivate: [authGuard],
     component: DetalleCancha
   },
 

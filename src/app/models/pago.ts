@@ -1,6 +1,8 @@
 export interface Pago{
-    id_pago?:number
-    monto:number
-    fecha_pago:Date
-    reserva_id:number
+    id?: number;
+    monto: number;
+    fecha_pago: string;
+    codigo_operacion: string;
+    estado: string;
+    reserva_id: number;
 }

@@ -1,6 +1,6 @@
 export interface Historial_Reserva{
-    id_historial_reserva?:number
+    id?:number
     estado:string
-    fecha_cambio:Date
+    fechaCambio:Date
     reserva_id:number
 }

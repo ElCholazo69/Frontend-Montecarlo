@@ -32,6 +32,17 @@
         color: $primary-color;
       }
 
+      .mensaje {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 14px;
+      }
+
       form {
         display: flex;
         flex-direction: column;
