@@ -130,7 +130,7 @@
           transition: background-color 0.2s;
 
           &:hover {
-            background-color: #fdfdfd;
+            background-color: #e7f2fc;
           }
 
           td {
@@ -190,7 +190,18 @@
                 color: #C62828;
 
                 &:hover {
-                  background-color: #FEE2E2;
+                  background-color: #f3a4a4;
+                  color: #340a0a;
+                }
+              }
+
+              &.btn-deshabilitado {
+                background-color: #dfdddd;
+                color: #acaaaa;
+
+                &:hover {
+                  background-color: #c4c3c3;
+                  color: #706f6f;
                 }
               }
             }
@@ -290,16 +301,18 @@
           thead {
             background-color: #f8f9fa;
             width: 100%;
+            border-bottom: 2.2px solid $text-selection;
               
             tr {
               background-color: #f8f9fa;
-              display: flex;         
+              display: flex;
+              justify-content: center;
+              align-items: center;       
               width: 100%;
               
               th {
                 flex: 1;             
                 padding: 1.2rem 1.25rem;
-                border-bottom: 2.2px solid $text-selection;
                 font-weight: bold;
                 color: $primary-color;
               }
@@ -313,7 +326,8 @@
             width: 100%;
 
             tr {
-              display: flex;        
+              display: flex;
+              text-align: center;  
               width: 100%;
 
               &:hover {
