@@ -25,7 +25,7 @@
 
         <li><a routerLink="/canchas">Canchas</a></li>
 
-        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/login" class="btn-login">Login</a></li>
 
       }
 
@@ -39,7 +39,7 @@
 
         <li><a routerLink="/consultas">Consultas</a></li>
 
-        <li><a (click)="salir()" class="link-salir">
+        <li><a routerLink="/" (click)="salir()" class="link-salir">
           Cerrar Sesión
         </a></li>
 
@@ -48,7 +48,7 @@
       @if (authService.isAdmin()) {
 
         <li>
-          <a (click)="salir()" class="link-salir">
+          <a routerLink="/" (click)="salir()" class="link-salir">
             Cerrar Sesión
           </a>
         </li>

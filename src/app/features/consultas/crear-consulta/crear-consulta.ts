@@ -1,27 +1,48 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { ConsultaService } from '../../../services/consulta.service';
+import { ConsultaRegistro } from '../../../models/consulta-registro';
+
 
 @Component({
   selector: 'app-crear-consulta',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './crear-consulta.html',
   styleUrl: './crear-consulta.scss',
 })
 export class CrearConsulta {
-  asunto: string = "";
-  mensaje: string = "";
+  formularioConsulta: FormGroup;
 
-  enviarConsulta(): void{
-    if(!this.asunto.trim() || !this.mensaje.trim()){
-      alert('Debe completar todos los campos solicitados.');
-      return;
+  constructor(private fb: FormBuilder, private consultaService: ConsultaService) {
+
+    this.formularioConsulta = this.fb.group({
+      asunto: ['', Validators.required],
+      mensaje: ['', Validators.required]
+    });
+
+  }
+
+  enviarConsulta(): void {
+
+    if (this.formularioConsulta.valid) {
+      const consulta: ConsultaRegistro = {
+      asunto: this.formularioConsulta.value.asunto,
+      mensaje: this.formularioConsulta.value.mensaje
+    }
+      this.consultaService.crearConsultas(consulta).subscribe({
+        next: () =>{
+          alert("Consulta enviada correctamente");
+
+          this.formularioConsulta.reset();
+        },
+        error: (error) =>{
+          console.error(error);
+          alert('No se pudo enviar la consulta')
+        }
+      })
     }
 
-    console.log("Consulta enviada");
-    console.log({
-      asunto: this.asunto,
-      mensaje: this.mensaje
-    });
   }
+
 }

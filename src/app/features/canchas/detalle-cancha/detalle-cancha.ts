@@ -69,20 +69,6 @@ export class DetalleCancha implements OnInit{
         }
       }
 
-<<<<<<< HEAD
-      const cancha = this.cancha;
-      const reserva:Reserva ={
-        estado: "ACTIVA",
-        fecha: fecha,
-        hora_fin: horaFin,
-        hora_inicio: horaInicio,
-        cancha_id: this.cancha?.id ?? 1,
-        usuario_id: 1
-      };
-      const imagen = this.imagen;
-      const total = this.cancha?.precioHora ?? 0;
-=======
->>>>>>> e4198148fe839a740015b508b9deb975144a5dcc
       const inicio = hInicio + (mInicio / 60);
       const fin = hFin + (mFin / 60);
 

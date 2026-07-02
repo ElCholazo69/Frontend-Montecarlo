@@ -1,13 +1,20 @@
 @use 'variables' as *;
 
 main {
-  padding: 60px 10%;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  padding: 40px 5%;
+  box-sizing: border-box;
 
   .consulta {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     align-items: center;
+    width: 100%; 
+    max-width: 1200px;
 
     .lado-izquierdo {
       display: flex;
@@ -16,10 +23,12 @@ main {
 
       h2 {
         font-size: 2rem;
+        color:$primary-color;
       }
 
       p {
         line-height: 1.6;
+        color:#424141;
       }
 
       img {
@@ -27,16 +36,32 @@ main {
         align-self: center;
         border-radius: 10px;
         box-shadow: $sombra;
+        object-fit: cover;
       }
 
       .contacto {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
+        margin-top: 15px;
+        
+        h3{
+          font-size:1.2rem;
+          color:$primary-color;
+          font-weight: bold;
+        }
 
-        li {
-          font-weight: 500;
-          padding: 0.3rem;
+        ul{
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          flex-direction: column;
+          
+          li {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color:#424141;
+          }
         }
       }
     }
@@ -63,6 +88,7 @@ main {
           label {
             margin-bottom: 8px;
             font-weight: bold;
+            font-size: 14px;
           }
 
           select,
@@ -71,10 +97,29 @@ main {
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color .2s;
+
+            &:focus {
+              outline: none;
+              border-color: $text-selection; 
+            }
+
+            &.ng-invalid.ng-touched {
+              border-color: red;
+            }
+
+            &textarea {
+              resize: vertical;
+            }
           }
 
-          textarea {
-            resize: vertical;
+          small {
+            margin-top: 6px;
+            color: red;
+            font-size: 0.85rem;
+            font-weight: 600;
           }
         }
 
@@ -86,12 +131,46 @@ main {
           border-radius: 5px;
           cursor: pointer;
           font-weight: bold;
+          font-size: 1rem;
 
           &:hover {
-            opacity: 0.8;
+            opacity: 0.85;
           }
         }
       }
     }
   }
 }
+
+@media(max-width:768px){
+  main{
+    padding: 25px 15px;
+
+    .consulta{
+      grid-template-columns: 1fr;
+      gap:40px;
+
+      .lado-izquierdo{
+        h2{
+          font-size: 1.2rem;
+        }
+
+        img{
+          display:none;
+        }
+        .contacto{
+          ul {
+            li {
+              font-size: 0.95rem; 
+            }
+          }
+        }
+      }
+
+      .lado-derecho{
+        padding: 20px 15px;
+      }
+    }
+  }
+}
+

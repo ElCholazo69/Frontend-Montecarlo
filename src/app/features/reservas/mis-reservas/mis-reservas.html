@@ -1,1 +1,49 @@
-<p>mis-reservas works!</p>
+<div class="misReservas">
+    <h2>Mis reservas</h2>
+
+    @if (reservas.length > 0) {
+
+        @for (reserva of reservas; track reserva.id; let i=$index) {
+
+            <div class="tarjetaReserva">
+
+                <div class="informacion">
+
+                    <h3>Reserva #{{reservas.length - $index}}</h3>
+
+                    <p><strong>Estado: </strong>
+                        <span
+                            class="badge"
+                            [class.pendiente]="reserva.estado === 'PENDIENTE'"
+                            [class.confirmada]="reserva.estado === 'CONFIRMADA'"
+                            [class.cancelada]="reserva.estado === 'CANCELADA'">
+
+                            {{ reserva.estado }}
+
+                        </span>
+                    </p>
+
+                </div>
+
+                <button (click)="abrirModal(reserva,i)">Ver detalles</button>
+
+            </div>
+
+        }
+    } @else {
+
+        <div class="sinReservas">
+            <p>No tienes reservas registradas.</p>
+        </div>
+
+    }
+
+    <app-detalle-reserva
+        [visible]="mostrarModal"
+        [reserva]="reservaSeleccionada"
+        [cancha]="canchaSeleccionada"
+        [numeroReserva]="numeroReservaSeleccionada"
+        (cerrarModal)="cerrarModal()">
+    </app-detalle-reserva>
+
+</div>

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Consulta } from '../models/consulta';
+import { ConsultaRegistro } from '../models/consulta-registro';
+
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +21,7 @@ export class ConsultaService {
     return this.http.get<Consulta[]>(`${this.backendURL}/consultas/mis-consultas`)
   }
 
-  crearConsultas(consulta:Consulta):Observable<Consulta>{
+  crearConsultas(consulta:ConsultaRegistro):Observable<Consulta>{
     return this.http.post<Consulta>(`${this.backendURL}/consultas`, consulta)
   }
 

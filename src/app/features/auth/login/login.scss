@@ -8,19 +8,23 @@
   background: url("https://img.magnific.com/foto-gratis/herramientas-deportivas_53876-138077.jpg?semt=ais_hybrid&w=740&q=80");
   background-size: cover;
   background-position: center;
+  padding:20px;
   
   .contenedorLogin {
     display: flex;
-    width: 50rem;
+    width: 100%;
+    max-width: 50rem;
     background: white;
     border-radius: 10px;
     box-shadow: $sombra;
     padding: 10px;
+    overflow:hidden;
 
     img {
       flex: 1;
       width: 30%;
       padding: 20px;
+      object-fit: cover;
     }
 
     .panelFormulario {
@@ -109,6 +113,23 @@
             text-decoration: underline;
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width:768px){
+  .login{
+    .contenedorLogin{
+      max-width: 50rem;
+
+      img{
+        display:none;
+      }
+
+      .panelFormulario{
+        padding: 25px 20px;
+      
       }
     }
   }

@@ -22,51 +22,52 @@
 
     <div class="lado-derecho">
       <h2>Formulario de Consulta</h2>
-      <form (ngSubmit)="enviarConsulta()">
+      <form [formGroup]="formularioConsulta" (ngSubmit)="enviarConsulta()">
+
         <div class="campo">
           <label for="asunto">Tipo de Consulta</label>
+
           <select
             id="asunto"
-            name="asunto"
-            [(ngModel)]="asunto">
-            
-            <option value="">
-              Seleccione una opción
-            </option>
+            formControlName="asunto">
 
-            <option value="Consulta General">
-              Consulta General
-            </option>
-
-            <option value="Queja">
-              Queja
-            </option>
-
-            <option value="Sugerencia">
-              Sugerencia
-            </option>
-
-            <option value="Otro">
-              Otro
-            </option>
+            <option value="">Seleccione una opción</option>
+            <option value="Consulta General">Consulta General</option>
+            <option value="Queja">Queja</option>
+            <option value="Sugerencia">Sugerencia</option>
+            <option value="Otro">Otro</option>
 
           </select>
+
+          @if (formularioConsulta.get('asunto')?.touched &&
+              formularioConsulta.get('asunto')?.errors?.['required']) {
+            <small>Seleccione un tipo de consulta</small>
+          }
+
         </div>
 
         <div class="campo">
+
           <label for="mensaje">Mensaje</label>
+
           <textarea
             id="mensaje"
-            name="mensaje"
             rows="8"
-            [(ngModel)]="mensaje"
-            placeholder="Ingrese aquí su consulta">
+            placeholder="Ingrese aquí su consulta"
+            formControlName="mensaje">
           </textarea>
+
+          @if (formularioConsulta.get('mensaje')?.touched &&
+              formularioConsulta.get('mensaje')?.errors?.['required']) {
+            <small>Campo obligatorio</small>
+          }
+
         </div>
 
         <button type="submit">
           Enviar Consulta
         </button>
+
       </form>
 
     </div>

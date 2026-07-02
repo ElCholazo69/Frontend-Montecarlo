@@ -1,0 +1,122 @@
+@use 'variables' as *;
+
+.modal-capa {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  .modal-ventana {
+    width: 90%;
+    max-width: 520px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: $sombra;
+    overflow: hidden;
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid #ececec;
+
+      h2 {
+        margin: 0;
+        color: $primary-color;
+        font-size: 1.4rem;
+      }
+
+      .btn-cerrar {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+    }
+
+    .modal-cuerpo {
+      padding: 1.5rem;
+
+      .detalle-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        span:first-child {
+          color: #666;
+          font-weight: bold;
+        }
+
+        strong {
+          color: $primary-color;
+        }
+
+        .badge {
+          padding: .35rem .9rem;
+          border-radius: 20px;
+          font-size: .85rem;
+          font-weight: bold;
+
+          &.pendiente{
+            background:#fff3cd;
+            color:#856404;
+          }
+
+          &.confirmada{
+            background:#d4edda;
+            color:#155724;
+          }
+
+          &.cancelada{
+            background:#f8d7da;
+            color:#721c24;
+          }
+        }
+      }
+
+      .mensaje{
+        margin-top:2rem;
+        background:#eaf0f7;
+        border-left:4px solid $button-color;
+        padding:1rem;
+        border-radius:8px;
+
+        p{
+          margin:0;
+          color:#555;
+          line-height:1.6;
+        }
+      }
+    }
+
+  }
+}
+
+@media(max-width:576px){
+
+  .modal-capa{
+
+    .modal-ventana{
+
+      width:95%;
+
+      .modal-cuerpo{
+
+        .detalle-item{
+          flex-direction:column;
+          align-items:flex-start;
+          gap:.35rem;
+        }
+
+      }
+
+    }
+
+  }
+
+}

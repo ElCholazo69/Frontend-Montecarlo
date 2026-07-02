@@ -1,1 +1,88 @@
-<p>detalle-reserva works!</p>
+@if (visible) {
+<div class="modal-capa" (click)="cerrar()">
+
+    <div class="modal-ventana" (click)="$event.stopPropagation()">
+
+        <div class="modal-header">
+
+            <h2>Detalle de la reserva</h2>
+
+            <button
+                type="button"
+                class="btn-cerrar"
+                (click)="cerrar()">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="modal-cuerpo">
+
+            <div class="detalle-item">
+                <span>Número de reserva</span>
+                <strong>#{{ numeroReserva }}</strong>
+            </div>
+
+            <div class="detalle-item">
+                <span>Estado</span>
+
+                <span
+                    class="badge"
+                    [class.pendiente]="reserva?.estado === 'PENDIENTE'"
+                    [class.confirmada]="reserva?.estado === 'CONFIRMADA'"
+                    [class.cancelada]="reserva?.estado === 'CANCELADA'">
+
+                    {{ reserva?.estado }}
+
+                </span>
+
+            </div>
+
+            <div class="detalle-item">
+                <span>Cancha</span>
+                <strong>{{ cancha?.nombre }}</strong>
+            </div>
+
+            <div class="detalle-item">
+                <span>Fecha</span>
+                <strong>{{ reserva?.fecha }}</strong>
+            </div>
+
+            <div class="detalle-item">
+                <span>Horario</span>
+                <strong>{{ formatearHora(reserva?.horaInicio ?? '') }}
+                    -
+                    {{ formatearHora(reserva?.horaFin ?? '') }}</strong>
+            </div>
+
+            <div class="mensaje">
+
+                @if(reserva?.estado === 'PENDIENTE'){
+                    <p>
+                        Tu reserva está siendo revisada por un administrador.
+                        La boleta de pago fue enviada al correo electrónico registrado.
+                    </p>
+                }
+
+                @if(reserva?.estado === 'CONFIRMADA'){
+                    <p>
+                        Tu reserva ha sido confirmada.
+                        Te esperamos en la fecha y hora programadas.
+                    </p>
+                }
+
+                @if(reserva?.estado === 'CANCELADA'){
+                    <p>
+                        Tu reserva fue cancelada.
+                        Si tienes alguna consulta comunícate con el administrador.
+                    </p>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+}
