@@ -72,7 +72,7 @@ export class DetalleCancha implements OnInit{
         fecha: fecha,
         hora_fin: horaFin,
         hora_inicio: horaInicio,
-        cancha_id: this.cancha?.id_cancha ?? 1,
+        cancha_id: this.cancha?.id ?? 1,
         usuario_id: 1
       };
       const imagen = this.imagen;

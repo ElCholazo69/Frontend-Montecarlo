@@ -126,14 +126,9 @@
                 color: #2e7d32;
               }
 
-              &.ocupado {
+              &.noDisponible {
                 background-color: #ffebee;
                 color: #c62828;
-              }
-
-              &.reparacion {
-                background-color: #fff3e0;
-                color: #ef6c00;
               }
             }
 
@@ -157,7 +152,6 @@
     }
   }
 
-  // 🎯 ANIDACIÓN DEL NUEVO MODAL: Concentrado al 100% dentro de la clase maestra
   .cancha-capa {
     position: fixed;
     top: 0;
@@ -246,9 +240,27 @@
                 border-color: $text-selection;
               }
             }
+            
+            .select-cancha {
+              color: #000;
 
+              &.placeholder{
+                color: #808080;
+              }
+            }
+            
             .textarea-cancha {
               resize: vertical;
+            }
+
+            small {
+              color: red;
+              font-size: 12px;
+              margin-top: -5px;
+            }
+
+            input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+              border: 1px solid red;
             }
           }
 

@@ -1,5 +1,5 @@
 export interface Cancha{
-    id_cancha?:number
+    id?:number
     descripcion:string
     estado:Boolean
     nombre:string

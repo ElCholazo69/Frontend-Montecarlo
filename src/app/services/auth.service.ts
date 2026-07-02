@@ -5,10 +5,10 @@ import { Login_Model } from '../models/login-model';
 import { Auth } from '../models/auth';
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   private backendURL = "http://localhost:8080"
 
@@ -28,41 +28,22 @@ export class AuthService {
   ) {}
 
   generarToken(login: Login_Model): Observable<Auth> {
-
-    return this.http
-      .post<Auth>(`${this.backendURL}/auth/login`, login)
-      .pipe(
-
-        tap((respuesta: Auth) => {
-
+    return this.http.post<Auth>(`${this.backendURL}/auth/login`, login)
+      .pipe(tap((respuesta: Auth) => {
           if (respuesta?.token) {
-
             localStorage.setItem('token', respuesta.token);
-
             this.tokenSignal.set(respuesta.token);
-
-            this.rolSignal.set(
-              this.extraerRolDelToken(respuesta.token)
-            );
-
+            this.rolSignal.set(this.extraerRolDelToken(respuesta.token));
           }
-
         })
-
       );
-
   }
 
   cerrarSesion(): void {
-
     localStorage.removeItem('token');
-
     this.tokenSignal.set(null);
-
     this.rolSignal.set(null);
-
     this.router.navigate(['/']);
-
   }
 
   obtenerToken(): string | null {
@@ -76,7 +57,6 @@ export class AuthService {
   isAdmin(): boolean {
     return this.rolSignal() === 'ADMIN';
   }
-
 
   isCliente(): boolean {
     return this.rolSignal() === 'CLIENTE';

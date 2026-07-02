@@ -27,38 +27,18 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td>Cancha Grass Sintético 1</td>
-          <td>Fútbol 7 con iluminación LED</td>
-          <td>S/. 80.00</td>
-          <td><span class="badge disponible">Disponible</span></td>
-          <td>
-            <button class="btn-editar" (click)="mostrarTablaEditar()">✏️</button>
-            <button class="btn-borrar">🗑️</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>Cancha de Básquet Principal</td>
-          <td>Piso de parqué techado</td>
-          <td>S/. 60.00</td>
-          <td><span class="badge ocupado">Ocupado</span></td>
-          <td>
-            <button class="btn-editar" (click)="mostrarTablaEditar()">✏️</button>
-            <button class="btn-borrar">🗑️</button>
-          </td>
-        </tr>
-      
-        <tr>
-          <td>Cancha de Tenis Arcilla</td>
-          <td>Malla regulable profesional</td>
-          <td>S/. 50.00</td>
-          <td><span class="badge reparacion">En Reparación</span></td>
-          <td>
-            <button class="btn-editar" (click)="mostrarTablaEditar()">✏️</button>
-            <button class="btn-borrar">🗑️</button>
-          </td>
-        </tr>
+        @for (item of cancha; track $index) {
+          <tr>
+            <td>{{item.nombre}}</td>
+            <td>{{item.descripcion}}</td>
+            <td>S/. {{item.precioHora.toFixed(2)}}</td>
+            <td><span class="badge" [ngClass]="obtenerClaseEstado(item.estado)">{{obtenerTextoEstado(item.estado)}}</span></td>
+            <td>
+              <button class="btn-editar" (click)="mostrarTablaEditar(item)">✏️</button>
+              <button class="btn-borrar" (click)="eliminarCancha(item.id)">🗑️</button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
@@ -66,49 +46,55 @@
   @if(mostrarTabla) {
     <div class="cancha-capa">
       <div class="cancha-ventana">
-
         <div class="cancha-header">
           <h3>{{ esEdicion ? 'Editar Cancha Registrada' : 'Registrar Nueva Cancha' }}</h3>
           <button class="btn-cerrar" (click)="cerrarTabla()">X</button>
         </div>
 
         <div class="cancha-cuerpo">
-          <form class="formulario-cancha">
-            
+          <form class="formulario-cancha" [formGroup]="formularioCancha" (ngSubmit)="onSubmit()">
             <div class="campo-grupo">
               <label>Nombre de la Cancha:</label>
-              <input type="text" placeholder="Ej: Cancha Grass 2" class="input-cancha">
+              <input type="text" placeholder="Ej: Cancha Grass 2" class="input-cancha" formControlName="nombreCancha">
+              @if (formularioCancha.get('nombreCancha')?.touched && formularioCancha.get('nombreCancha')?.invalid) {
+                <small>Escriba un nombre para la cancha valido</small>
+              }
             </div>
 
             <div class="campo-grupo">
               <label>Precio por Hora (S/.):</label>
-              <input type="number" placeholder="Ej: 80.00" class="input-cancha" min="0">
+              <input type="number" placeholder="Ej: 80.00" class="input-cancha" min="0" formControlName="precioHora">
+              @if (formularioCancha.get('precioHora')?.touched && formularioCancha.get('precioHora')?.invalid) {
+                <small>Escriba un precio valido</small>
+              }
             </div>
 
             <div class="campo-grupo">
               <label>Estado Operativo:</label>
-              <select class="select-cancha">
+              <select class="select-cancha" formControlName="estado" [class.placeholder]="!formularioCancha.get('estado')?.value">
+                <option value="" disabled hidden>Seleccione un estado</option>
                 <option value="true">Disponible</option>
-                <option value="true">Ocupado</option>
-                <option value="false">En Reparación</option>
+                <option value="false">No Disponible</option>
               </select>
+              @if (formularioCancha.get('estado')?.touched && formularioCancha.get('estado')?.invalid) {
+                <small>Seleccione un estado valido</small>
+              }
             </div>
 
             <div class="campo-grupo completo">
               <label>Descripción del Espacio:</label>
-              <textarea placeholder="Detalles de la cancha..." class="textarea-cancha" rows="3"></textarea>
+              <textarea placeholder="Detalles de la cancha..." class="textarea-cancha" rows="3" formControlName="descripcion"></textarea>
+              @if (formularioCancha.get('descripcion')?.touched && formularioCancha.get('descripcion')?.invalid) {
+                <small>Escriba una descripcion valida</small>
+              }
             </div>
 
             <div class="formulario-acciones">
               <button type="button" class="btn-cancelar-modal" (click)="cerrarTabla()">Cancelar</button>
-              <button type="submit" class="btn-guardar-cancha">
-                {{ esEdicion ? 'Guardar Cambios' : 'Crear Cancha' }}
-              </button>
+              <button type="submit" class="btn-guardar-cancha">{{ esEdicion ? 'Guardar Cambios' : 'Crear Cancha' }}</button>
             </div>
-
           </form>
         </div>
-
       </div>
     </div>
   }
