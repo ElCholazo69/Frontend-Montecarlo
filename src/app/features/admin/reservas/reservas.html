@@ -31,8 +31,8 @@
         @for (item of listaReservas; track $index) {
           @if (esMayorFechaActual(item.fecha)) {
             <tr>
-              <td>Juan Pérez</td>
-              <td>Cancha Grass Sintético 1</td>
+              <td>{{obtenerUsuarioCancha(item.id!)?.usuario?.nombre}}</td>
+              <td>{{obtenerUsuarioCancha(item.id!)?.cancha?.nombre}}</td>
               <td>{{item.fecha}}</td>
               <td>{{formatearHora(item.horaInicio)}} - {{formatearHora(item.horaFin)}}</td>
               <td><span class="badge" [ngClass]="obtenerClaseEstado(item.estado)">{{item.estado}}</span></td>
@@ -58,34 +58,36 @@
 
         <div class="historial-cuerpo">
           <div class="buscador-bloque">
-            <input type="text" placeholder="Buscar por nombre de usuario..." class="input-buscar">
+            <input type="text" placeholder="Buscar por nombre de cancha..." class="input-buscar" [(ngModel)]="nombreCanchaReservaBuscada" (keyup.enter)="buscarHistorialPorNombre()">
           </div>
 
           <table class="historial-tabla">
             <thead>
               <tr>
-                <th>Usuario</th>
                 <th>Reserva ID</th>
                 <th>Cancha</th>
+                <th>Usuario</th>
                 <th>Estado Anterior/Nuevo</th>
                 <th>Fecha de Cambio</th>
               </tr>
             </thead>
+            
             <tbody>
-              <tr>
-                <td>Juan Pérez</td>
-                <td>#1042</td>
-                <td>Cancha Grass Sintético 1</td>
-                <td><span class="badge confirmado">Confirmada</span></td>
-                <td>28/06/2026 10:15 AM</td>
-              </tr>
-              <tr>
-                <td>Carlos Mendoza</td>
-                <td>#1039</td>
-                <td>Cancha de Tenis Arcilla</td>
-                <td><span class="badge cancelado">Cancelada</span></td>
-                <td>27/06/2026 04:30 PM</td>
-              </tr>
+              @for (item of historialReserva; track $index) {
+                <tr>
+                  <td>#{{item.reservaId}}</td>
+                  <td>{{obtenerUsuarioCancha(item.reservaId).cancha?.nombre}}</td>
+                  <td>{{obtenerUsuarioCancha(item.reservaId).usuario?.nombre}}</td>
+                  <td><span class="badge confirmado">{{item.estado}}</span></td>
+                  <td>
+                    {{obtenerUsuarioCancha(item.reservaId).reserva?.fecha}}
+                    <br>
+                    {{formatearHora(obtenerUsuarioCancha(item.reservaId).reserva?.horaInicio!)}}
+                    -
+                    {{formatearHora(obtenerUsuarioCancha(item.reservaId).reserva?.horaFin!)}}
+                  </td>
+                </tr>
+              }
             </tbody>
           </table>
         </div>
@@ -93,5 +95,4 @@
       </div>
     </div>
   }
-
 </div>

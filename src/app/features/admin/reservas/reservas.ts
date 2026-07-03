@@ -4,23 +4,33 @@ import { Reserva } from '../../../models/reserva';
 import { ReservaService } from '../../../services/reserva.service';
 import { CommonModule } from '@angular/common';
 import { Historial_Reserva } from '../../../models/historial-reserva';
+import { CanchaService } from '../../../services/cancha.service';
+import { Cancha } from '../../../models/cancha';
+import { Usuario } from '../../../models/usuario';
+import { UsuarioService } from '../../../services/usuario.service';
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-reservas',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, FormsModule],
   templateUrl: './reservas.html',
   styleUrl: './reservas.scss',
 })
 export class Reservas implements OnInit{
-  mostrarHistorial: boolean = false;
+  mostrarHistorial: boolean = false
   listaReservas:Reserva[]=[]
+  canchas:Cancha[]=[]
+  usuarios:Usuario[]=[]
   historialReserva:Historial_Reserva[]=[]
+  nombreCanchaReservaBuscada:string = ""
 
   ngOnInit(): void {
     this.actualizarListaReservas()
+    this.actualizarListaCanchas()
+    this.actualizarListaUsuarios()
   }
 
-  constructor(private reservaService:ReservaService){}
+  constructor(private reservaService:ReservaService, private canchaService:CanchaService, private usuarioService:UsuarioService){}
 
   abrirHistorial(){
     this.mostrarHistorial = true;
@@ -66,11 +76,34 @@ export class Reservas implements OnInit{
       },
     })
   }
-  
+
+  actualizarListaCanchas(){
+    this.canchaService.listarCanchas().subscribe({
+      next: (data) => {
+        this.canchas = data;
+      },
+      error: (err) =>{
+        console.error(err)
+      }
+    });
+  }
+
+  actualizarListaUsuarios(){
+    this.usuarioService.listarUsuarios().subscribe({
+      next: (data) => {
+        this.usuarios = data;
+      },
+      error: (err) =>{
+        console.error(err)
+      }
+    })
+  }
+
   actualizarHistorialReserva(idReserva:number){
     this.reservaService.listarHistorialReservas(idReserva).subscribe({
       next: (data) => {
-        this.historialReserva = data
+        this.historialReserva.push(...data)
+        
       },
       error: (err) =>{
         console.error(err)
@@ -112,5 +145,30 @@ export class Reservas implements OnInit{
         })
       }
     }
+  }
+
+  obtenerUsuarioCancha(idReserva:number){
+    const reserva = this.listaReservas.find(reserva => reserva.id === idReserva)
+    const usuario = this.usuarios.find(usuario => usuario.id === reserva?.usuarioId)
+    const cancha = this.canchas.find(cancha => cancha.id === reserva?.canchaId)
+    const datos ={
+      reserva: reserva,
+      usuario: usuario,
+      cancha: cancha
+    }
+    return datos
+  }
+
+  buscarHistorialPorNombre() {
+    this.historialReserva = [];
+    const cancha = this.canchas.find(cancha => cancha.nombre.toLowerCase() === this.nombreCanchaReservaBuscada.toLowerCase().trim())
+
+    if (cancha != undefined) {
+      const reservasCancha = this.listaReservas.filter(reserva => reserva.canchaId === cancha.id)
+
+      reservasCancha.forEach(reserva => this.actualizarHistorialReserva(reserva.id!))
+    }else{
+      alert("No se encontró ninguna cancha con ese nombre")
+    } 
   }
 }
