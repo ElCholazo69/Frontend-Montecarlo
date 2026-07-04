@@ -113,7 +113,7 @@ export class Reservas implements OnInit{
 
   cambiarEstadoComfirmado(reserva:Reserva){
     if (!(reserva.estado === "CONFIRMADA")) {
-      const comfirmacion = confirm("El estado se cambiara a comfirmado ¿Esta seguro?")
+      const comfirmacion = confirm("El estado se cambiara a confirmado ¿Esta seguro?")
 
       if(comfirmacion){
         this.reservaService.actualizarEstado(reserva.id!, "CONFIRMADA").subscribe({
