@@ -1,4 +1,4 @@
 export interface ConsultaRegistro {
-    asunto: string;
-    mensaje: string;
+    asunto: string
+    mensaje: string
 }

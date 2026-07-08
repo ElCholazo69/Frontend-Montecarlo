@@ -1,0 +1,271 @@
+@use 'variables' as *;
+
+.misConsultas {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+
+  .titulo {
+    text-align: center;
+    margin-bottom: 35px;
+
+    h2 {
+      color: $primary-color;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+
+  .contenedorConsultas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+
+    .tarjetaConsulta {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: $sombra;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .cabeceraConsulta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        h3 {
+            color: $primary-color;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .estado {
+            font-weight: bold;
+            white-space: nowrap;
+
+            span {
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+
+                &.estado-pendiente {
+                    background-color: #f39c12;
+                    color: white;
+                }
+
+                &.estado-respondida {
+                    background-color: #27ae60;
+                    color: white;
+                }
+            }
+        }
+      }
+
+      .contenidoConsulta {
+
+        h4 {
+          color: #333;
+          font-size: 1.1rem;
+          margin-bottom: 20px;
+        }
+      }
+
+      .accionesConsulta {
+        text-align: right;
+
+        button {
+          background-color: $button-color;
+          color: $text-color;
+          border: none;
+          border-radius: 8px;
+          padding: .6rem 1.2rem;
+          cursor: pointer;
+          font-weight: bold;
+          transition: .2s;
+
+          &:hover {
+            filter: brightness(.9);
+          }
+        }
+      }
+    }
+  }
+
+  .sinConsultas {
+    text-align: center;
+    padding: 50px 20px;
+
+    h3 {
+      color: $primary-color;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, .45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modalConsulta {
+  background-color: white;
+  width: 90%;
+  max-width: 650px;
+  border-radius: 12px;
+  box-shadow: $sombra;
+  overflow: hidden;
+
+    .tituloModal {
+    background-color: $primary-color;
+    color: $text-color;
+    padding: 18px 24px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      margin: 0;
+    }
+
+    span {
+      padding: .3rem .8rem;
+      border-radius: 20px;
+      font-size: .85rem;
+      font-weight: bold;
+
+      &.estado-pendiente {
+        background-color: #f39c12;
+        color: white;
+      }
+
+      &.estado-respondida {
+        background-color: #27ae60;
+        color: white;
+      }
+    }
+  }
+
+  .contenidoModal {
+    padding: 25px;
+
+    .campo {
+      margin-bottom: 20px;
+
+      span {
+        display: block;
+        color: $primary-color;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+
+      p {
+        margin: 0;
+        color: #444;
+        line-height: 1.6;
+        word-break: break-word;
+      }
+    }
+    .estado {
+        margin-bottom: 20px;
+        font-weight: bold;
+
+        span {
+            padding: 0.4rem 0.6rem;
+            border-radius: 20px;
+            font-size: .9rem;
+
+            &.estado-pendiente {
+                background-color: #f39c12;
+                color: white;
+            }
+
+            &.estado-respondida {
+                background-color: #27ae60;
+                color: white;
+            }
+        }
+    }
+  }
+
+  .accionesModal {
+    padding: 20px 25px;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      background-color: $button-color;
+      color: $text-color;
+      border: none;
+      border-radius: 8px;
+      padding: .7rem 1.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: .2s;
+
+      &:hover {
+        filter: brightness(.9);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .misConsultas {
+
+    width: 95%;
+
+    .titulo {
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: .95rem;
+      }
+
+    }
+
+    .contenedorConsultas {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+  }
+
+}
+
+@media (max-width: 567px) {
+
+  .misConsultas {
+
+    .contenedorConsultas {
+      grid-template-columns: 1fr;
+    }
+
+    .modalConsulta {
+      width: 95%;
+    }
+
+  }
+
+}

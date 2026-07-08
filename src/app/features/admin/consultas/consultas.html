@@ -26,37 +26,170 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td>Juan Pérez</td>
-          <td>Sugerencia</td>
-          <td class="celda-mensaje">¿Las luces LED de la Cancha 1 se apagan automáticamente a la medianoche?</td>
-          <td>28/06/2026 10:15 AM</td>
-          <td>
-            <button class="btn-borrar" title="Eliminar Consulta">Eliminar Consulta</button>
-          </td>
-        </tr>
 
-        <tr>
-          <td>María Luján</td>
-          <td>Otro</td>
-          <td class="celda-mensaje">Necesito información sobre alquiler de todo el complejo para un evento empresarial este sábado.</td>
-          <td>28/06/2026 09:30 AM</td>
-          <td>
-            <button class="btn-borrar" title="Eliminar Consulta">Eliminar Consulta</button>
-          </td>
-        </tr>
+        @for (consulta of consultas; track consulta.id) {
 
-        <tr>
-          <td>María Luján</td>
-          <td>Otro</td>
-          <td class="celda-mensaje">Necesito información sobre alquiler de todo el complejo para un evento empresarial este sábado.</td>
-          <td>28/06/2026 09:30 AM</td>
-          <td>
-            <button class="btn-borrar" title="Eliminar Consulta">Eliminar Consulta</button>
-          </td>
-        </tr>
+          <tr>
+
+            <td>Usuario #{{ consulta.usuarioId }}</td>
+
+            <td>{{ consulta.asunto }}</td>
+
+            <td class="celda-mensaje">
+              {{ consulta.mensaje }}
+            </td>
+
+            <td>
+              {{ consulta.fecha | date:'dd/MM/yyyy HH:mm' }}
+            </td>
+
+            <td>
+
+              <button
+                class="btn-responder"
+                (click)="abrirModal(consulta)">
+
+                {{ consulta.estado === 'RESPONDIDA' ? 'Respuesta' : 'Responder' }}
+
+              </button>
+
+              <button
+                class="btn-borrar"
+                (click)="eliminarConsulta(consulta.id!)">
+
+                Eliminar
+
+              </button>
+
+            </td>
+
+          </tr>
+
+        }
 
       </tbody>
     </table>
+    @if (consultaSeleccionada) {
+
+  <div
+    class="overlay"
+    (click)="cerrarModal()">
+
+    <div
+      class="modalConsulta"
+      (click)="$event.stopPropagation()">
+
+      <div class="tituloModal">
+        <h3>
+          {{ consultaSeleccionada.estado === 'RESPONDIDA'
+              ? 'Detalle de la Respuesta'
+              : 'Responder Consulta' }}
+        </h3>
+      </div>
+
+      <div class="contenidoModal">
+
+        <div class="campo">
+          <span>Asunto</span>
+          <p>{{ consultaSeleccionada.asunto }}</p>
+        </div>
+
+        <div class="campo">
+          <span>Mensaje</span>
+          <p>{{ consultaSeleccionada.mensaje }}</p>
+        </div>
+
+        <div class="campo">
+          <span>Fecha de envío</span>
+          <p>{{ consultaSeleccionada.fecha | date:'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+
+        <div class="campo">
+          <span>Estado</span>
+          <p>{{ consultaSeleccionada.estado }}</p>
+        </div>
+
+        @if (consultaSeleccionada.estado === 'Pendiente') {
+
+          <form [formGroup]="formRespuesta">
+
+            <div class="campo">
+
+              <span>Respuesta</span>
+
+              <textarea
+                formControlName="respuesta"
+                placeholder="Escriba la respuesta para el cliente">
+              </textarea>
+
+              @if (formRespuesta.get('respuesta')?.touched &&
+                  formRespuesta.get('respuesta')?.hasError('required')) {
+
+                <small>La respuesta es obligatoria.</small>
+
+              }
+
+              @if (formRespuesta.get('respuesta')?.touched &&
+                  formRespuesta.get('respuesta')?.hasError('minlength')) {
+
+                <small>Debe contener al menos 10 caracteres.</small>
+
+              }
+
+              @if (formRespuesta.get('respuesta')?.touched &&
+                  formRespuesta.get('respuesta')?.hasError('maxlength')) {
+
+                <small>No puede superar los 500 caracteres.</small>
+
+              }
+
+            </div>
+
+          </form>
+
+        } @else {
+
+          <div class="campo">
+            <span>Respuesta enviada</span>
+            <p>{{ consultaSeleccionada.respuesta }}</p>
+          </div>
+
+          <div class="campo">
+            <span>Fecha de respuesta</span>
+            <p>{{ consultaSeleccionada.fechaRespuesta | date:'dd/MM/yyyy HH:mm' }}</p>
+          </div>
+
+        }
+
+      </div>
+
+      <div class="accionesModal">
+
+        <button
+          class="btn-cancelar"
+          (click)="cerrarModal()">
+
+          Cerrar
+
+        </button>
+
+        @if (consultaSeleccionada.estado === 'Pendiente') {
+
+          <button
+            class="btn-responder"
+            (click)="responderConsulta()"
+            [disabled]="formRespuesta.invalid">
+
+            Enviar respuesta
+
+          </button>
+
+        }
+
+      </div>
+
+    </div>
+
   </div>
-</div>
+
+}

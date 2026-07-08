@@ -1,7 +1,10 @@
 export interface Consulta{
-    id_consulta?:number
-    asunto:string
-    mensaje:string
-    fecha:Date
-    usuario_id:number
+    id?: number
+    asunto: string
+    mensaje: string
+    fecha: Date
+    usuarioId: number
+    respuesta: string | null
+    fechaRespuesta: Date | null
+    estado: string;
 }

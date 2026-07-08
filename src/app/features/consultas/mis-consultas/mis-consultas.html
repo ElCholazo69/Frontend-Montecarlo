@@ -1,1 +1,135 @@
-<p>mis-consultas works!</p>
+<div class="misConsultas">
+
+  <div class="titulo">
+    <h2>Mis Consultas</h2>
+
+    <p>
+      Aquí puedes revisar el estado de las consultas que has realizado.
+      Cuando una consulta sea respondida, también recibirás la respuesta en tu correo electrónico registrado.
+    </p>
+  </div>
+
+  @if (consultas.length > 0) {
+
+    <div class="contenedorConsultas">
+
+      @for (consulta of consultas; track consulta.id; let i = $index) {
+
+        <div class="tarjetaConsulta">
+
+          <div class="cabeceraConsulta">
+
+            <h3>Consulta #{{ i + 1 }}</h3>
+
+            <div class="estado">
+            <span
+                [ngClass]="{
+                'estado-pendiente': consulta.estado === 'Pendiente',
+                'estado-respondida': consulta.estado === 'RESPONDIDA'
+                }">
+                Estado: {{ consulta.estado }}
+            </span>
+            </div>
+
+          </div>
+
+          <div class="contenidoConsulta">
+
+            <h4>{{ consulta.asunto }}</h4>
+
+          </div>
+
+          <div class="accionesConsulta">
+
+            <button (click)="abrirDetalle(consulta)">
+              Ver detalles
+            </button>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  } @else {
+
+    <div class="sinConsultas">
+
+      <h3>No tienes consultas registradas.</h3>
+
+    </div>
+
+  }
+
+</div>
+
+@if (consultaSeleccionada) {
+
+  <div
+    class="overlay"
+    (click)="cerrarDetalle()">
+
+    <div
+      class="modalConsulta"
+      (click)="$event.stopPropagation()">
+
+      <div class="tituloModal">
+        <h3>Detalle de la Consulta</h3>
+
+        <span
+          [ngClass]="{
+            'estado-pendiente': consultaSeleccionada.estado === 'Pendiente',
+            'estado-respondida': consultaSeleccionada.estado === 'RESPONDIDA'
+          }">
+
+          Estado: {{ consultaSeleccionada.estado }}
+        </span>
+      </div>
+
+      <div class="contenidoModal">
+
+        <div class="campo">
+          <span>Asunto</span>
+          <p>{{ consultaSeleccionada.asunto }}</p>
+        </div>
+
+        <div class="campo">
+          <span>Mensaje</span>
+          <p>{{ consultaSeleccionada.mensaje }}</p>
+        </div>
+
+        <div class="campo">
+          <span>Fecha</span>
+          <p>{{ consultaSeleccionada.fecha | date:'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+
+        @if (consultaSeleccionada.respuesta) {
+
+          <div class="campo">
+            <span>Respuesta</span>
+            <p>{{ consultaSeleccionada.respuesta }}</p>
+          </div>
+
+          <div class="campo">
+            <span>Fecha de respuesta</span>
+            <p>{{ consultaSeleccionada.fechaRespuesta | date:'dd/MM/yyyy HH:mm' }}</p>
+          </div>
+
+        }
+
+      </div>
+
+      <div class="accionesModal">
+
+        <button (click)="cerrarDetalle()">
+          Cerrar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+}
