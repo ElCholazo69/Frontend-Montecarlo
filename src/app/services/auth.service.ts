@@ -62,6 +62,14 @@ export class AuthService {
     return this.rolSignal() === 'CLIENTE';
   }
 
+  obtenerNombre(): string {
+    if (this.isCliente()) {
+      return 'cliente';
+    }
+
+    return '';
+  }
+
   private extraerRolDelToken(token: string | null): string | null {
     if (!token) {
       return null;

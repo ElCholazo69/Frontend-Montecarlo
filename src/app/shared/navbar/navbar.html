@@ -39,10 +39,22 @@
 
         <li><a routerLink="/consultas">Consultas</a></li>
 
-        <li><a routerLink="/" (click)="salir()" class="link-salir">
-          Cerrar Sesión
-        </a></li>
-
+        <li class="dropdown-container">
+          <button type="button" class="dropdown-trigger">
+            Hola, {{ authService.obtenerNombre() }}
+            <span class="arrow">▾</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/mis-consultas" (click)="menuAbierto = false">Mis Consultas</a></li>
+            <li><a routerLink="/mis-pagos" (click)="menuAbierto = false">Mis Pagos</a></li>
+            <li class="divider"></li>
+            <li>
+              <a routerLink="/" (click)="salir()" class="link-salir">
+                Cerrar Sesión
+              </a>
+            </li>
+          </ul>
+        </li>
       }
 
       @if (authService.isAdmin()) {

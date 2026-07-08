@@ -19,6 +19,8 @@ import { FormularioPago } from './features/pagos/formulario-pago/formulario-pago
 import { authGuard } from './core/guards/auth.guard';
 import { adminGuard } from './core/guards/admin.guard';
 import { MisReservas } from './features/reservas/mis-reservas/mis-reservas';
+import { MisConsultas } from './features/consultas/mis-consultas/mis-consultas';
+import { MisPagos } from './features/pagos/mis-pagos/mis-pagos';
 
 export const routes: Routes = [
     {
@@ -56,6 +58,18 @@ export const routes: Routes = [
     path: 'consultas',
     canActivate: [authGuard],
     component: CrearConsulta
+  },
+
+  {
+    path: 'mis-consultas',
+    canActivate: [authGuard],
+    component: MisConsultas
+  },
+
+  {
+    path: 'mis-pagos',
+    canActivate: [authGuard],
+    component: MisPagos
   },
 
   {
