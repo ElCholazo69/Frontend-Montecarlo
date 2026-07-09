@@ -21,8 +21,8 @@ import { adminGuard } from './core/guards/admin.guard';
 import { MisReservas } from './features/reservas/mis-reservas/mis-reservas';
 import { MisConsultas } from './features/consultas/mis-consultas/mis-consultas';
 import { MisPagos } from './features/pagos/mis-pagos/mis-pagos';
-import { Dashboard } from './features/admin/dashboard/dashboard';
-import { Configuracion } from './features/admin/configuracion/configuracion';
+import { DashboardAdmin } from './features/admin/dashboard-admin/dashboard-admin';
+import { ConfiguracionAdmin } from './features/admin/configuracion-admin/configuracion-admin';
 
 export const routes: Routes = [
     {
@@ -99,7 +99,7 @@ export const routes: Routes = [
 
       {
         path: 'dashboard',
-        component: Dashboard
+        component: DashboardAdmin
       },
 
       {
@@ -129,7 +129,7 @@ export const routes: Routes = [
 
       {
         path: 'configuracion',
-        component: Configuracion
+        component: ConfiguracionAdmin
       }
 
     ]

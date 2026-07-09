@@ -54,7 +54,7 @@ export class Login implements OnInit {
           console.log("Token: "+ data.token)
           
           if(this.authService.isAdmin()){
-            this.router.navigate(['/admin/canchas'])
+            this.router.navigate(['/admin/dashboard'])
           }else{
             this.router.navigate(['/'])
           }

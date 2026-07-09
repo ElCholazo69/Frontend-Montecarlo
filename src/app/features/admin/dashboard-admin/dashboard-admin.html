@@ -1,0 +1,68 @@
+<div class="admin-contenedor">
+
+  <h1 class="panel-titulo">Panel de Administración</h1>
+
+  <div class="admin-seccion">
+    <a routerLink="/admin/dashboard" routerLinkActive="tab-activa" class="tab-link">Dashboard</a>
+    <a routerLink="/admin/canchas" routerLinkActive="tab-activa" class="tab-link">Canchas</a>
+    <a routerLink="/admin/reservas" routerLinkActive="tab-activa" class="tab-link">Reservas</a>
+    <a routerLink="/admin/usuarios" routerLinkActive="tab-activa" class="tab-link">Usuarios</a>
+    <a routerLink="/admin/consultas" routerLinkActive="tab-activa" class="tab-link">Consultas</a>
+    <a routerLink="/admin/configuracion" routerLinkActive="tab-activa" class="tab-link">Configuración</a>
+  </div>
+
+  <div class="admin-contenido">
+
+    <h3>Resumen General del Club Deportivo</h3>
+
+    @if (dashboard) {
+
+      <div class="dashboard-grid">
+
+        <div class="card-dashboard">
+          <span>Total de Usuarios</span>
+          <h2>{{ dashboard.totalUsuarios }}</h2>
+        </div>
+
+        <div class="card-dashboard">
+          <span>Total de Canchas</span>
+          <h2>{{ dashboard.totalCanchas }}</h2>
+        </div>
+
+        <div class="card-dashboard">
+          <span>Total de Reservas</span>
+          <h2>{{ dashboard.totalReservas }}</h2>
+        </div>
+
+        <div class="card-dashboard">
+          <span>Total de Consultas</span>
+          <h2>{{ dashboard.totalConsultas }}</h2>
+        </div>
+
+        <div class="card-dashboard">
+          <span>Reservas Pendientes</span>
+          <h2>{{ dashboard.reservasPendientes }}</h2>
+        </div>
+
+        <div class="card-dashboard">
+          <span>Reservas Confirmadas</span>
+          <h2>{{ dashboard.reservasConfirmadas }}</h2>
+        </div>
+
+        <div class="card-dashboard">
+          <span>Reservas Canceladas</span>
+          <h2>{{ dashboard.reservasCanceladas }}</h2>
+        </div>
+
+        <div class="card-dashboard ingresos">
+          <span>Ingresos Totales</span>
+          <h2>S/. {{ dashboard.ingresosTotales | number:'1.2-2' }}</h2>
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>
