@@ -119,7 +119,10 @@
 
               <textarea
                 formControlName="respuesta"
-                placeholder="Escriba la respuesta para el cliente">
+                placeholder="Escriba la respuesta para el cliente"
+                [class.textarea-error]="
+                  formRespuesta.get('respuesta')?.invalid &&
+                  formRespuesta.get('respuesta')?.touched">
               </textarea>
 
               @if (formRespuesta.get('respuesta')?.touched &&

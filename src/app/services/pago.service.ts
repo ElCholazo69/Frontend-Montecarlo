@@ -13,9 +13,18 @@ export class PagoService {
   constructor(private http: HttpClient) { }
 
   procesarPago(pago: PagoRegistro): Observable<Pago> {
-    return this.http.post<Pago>(
-      `${this.backendURL}/pagos`,
-      pago
+    return this.http.post<Pago>(`${this.backendURL}/pagos`, pago);
+  }
+  
+  listarMisPagos(): Observable<Pago[]>{
+    return this.http.get<Pago[]>(`${this.backendURL}/pagos/mis-pagos`);
+  }
+
+  descargarComprobante(id: number): Observable<Blob>{
+    return this.http.get(`${this.backendURL}/pdf/${id}`,
+      {
+        responseType: 'blob'
+      }
     );
-  }  
+  } 
 }

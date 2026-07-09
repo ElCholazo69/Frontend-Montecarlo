@@ -1,0 +1,150 @@
+@use 'variables' as *;
+
+.misPagos {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+
+  .titulo {
+    text-align: center;
+    margin-bottom: 35px;
+
+    h2 {
+      color: $primary-color;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+
+  .contenedorPagos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+
+    .tarjetaPago {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: $sombra;
+      display: flex;
+      flex-direction: column;
+
+      .cabeceraPago {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid #ececec;
+        background-color: #BDC3C7;
+
+        h3 {
+          color: $primary-color;
+          margin: 0;
+          font-size: 1.2rem;
+        }
+
+        .estado {
+          background-color: #27ae60;
+          color: white;
+          padding: 0.35rem 0.8rem;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: bold;
+          white-space: nowrap;
+        }
+      }
+
+      .contenidoPago {
+        padding: 20px;
+        flex: 1;
+
+        .campo {
+          margin-bottom: 20px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          span {
+            display: block;
+            color: $primary-color;
+            font-weight: bold;
+            margin-bottom: 6px;
+          }
+
+          p {
+            margin: 0;
+            color: #555;
+            word-break: break-word;
+          }
+        }
+      }
+
+      .accionesPago {
+        padding: 20px;
+        border-top: 1px solid #ececec;
+
+        button {
+          width: 100%;
+          background-color: transparent;
+          border: 2px solid $button-color;
+          color: $primary-color;
+          border-radius: 8px;
+          padding: .8rem 1rem;
+          cursor: pointer;
+          font-weight: bold;
+          transition: .2s;
+
+          &:hover {
+            background-color: $button-color;
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+
+  .sinPagos {
+    text-align: center;
+    padding: 50px 20px;
+
+    h3 {
+      color: $primary-color;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .misPagos {
+    width: 95%;
+
+    .titulo {
+
+      h2 {
+        font-size: 1.8rem;
+      }
+      p {
+        font-size: .95rem;
+      }
+    }
+    .contenedorPagos {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+}
+
+@media (max-width: 567px) {
+  .misPagos {
+    .contenedorPagos {
+      grid-template-columns: 1fr;
+    }
+  }
+}

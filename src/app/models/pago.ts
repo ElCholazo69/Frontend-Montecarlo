@@ -1,8 +1,8 @@
 export interface Pago{
     id?: number
     monto: number
-    fecha_pago: string
-    codigo_operacion: string
+    fechaPago: string
+    codigoOperacion: string
     estado: string
-    reserva_id: number
+    reservaId: number
 }

@@ -1,1 +1,80 @@
-<p>mis-pagos works!</p>
+<div class="misPagos">
+
+  <div class="titulo">
+
+    <h2>Mis Pagos</h2>
+
+    <p>
+      Consulta el historial de tus pagos realizados y descarga nuevamente
+      el comprobante de cada transacción cuando lo necesites.
+    </p>
+
+  </div>
+
+  @if (pagos.length > 0) {
+
+    <div class="contenedorPagos">
+
+      @for (pago of pagos; track pago.id; let i = $index) {
+
+        <div class="tarjetaPago">
+
+          <div class="cabeceraPago">
+
+            <h3>Pago #{{ i+1 }}</h3>
+
+            <span class="estado">
+              {{ pago.estado }}
+            </span>
+
+          </div>
+
+          <div class="contenidoPago">
+
+            <div class="campo">
+              <span>Código de operación</span>
+              <p>{{ pago.codigoOperacion }}</p>
+            </div>
+
+            <div class="campo">
+              <span>Monto</span>
+              <p>S/. {{ pago.monto }}</p>
+            </div>
+
+            <div class="campo">
+              <span>Fecha de pago</span>
+              <p>{{ pago.fechaPago | date:'dd/MM/yyyy - HH:mm' }}</p>
+            </div>
+
+          </div>
+
+          <div class="accionesPago">
+
+            <button
+              (click)="descargarComprobante(pago.id!, pago.codigoOperacion)">
+
+              Descargar comprobante PDF
+
+            </button>
+
+          </div>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
+
+  @else {
+
+    <div class="sinPagos">
+
+      <h3>No tienes pagos registrados.</h3>
+
+    </div>
+
+  }
+
+</div>

@@ -235,7 +235,7 @@
 
       textarea {
         width: 100%;
-        min-height: 110px;
+        min-height: 140px;
         resize: vertical;
         padding: .8rem 1rem;
         border: 1px solid #d6d6d6;
@@ -249,6 +249,11 @@
         &:focus {
           border-color: $button-color;
           box-shadow: 0 0 0 3px rgba(159,179,105,.2);
+        }
+
+        &.textarea-error {
+          border-color: #d32f2f;
+          box-shadow: 0 0 0 3px rgba(211,47,47,.15);
         }
       }
 
