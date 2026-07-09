@@ -21,6 +21,8 @@ import { adminGuard } from './core/guards/admin.guard';
 import { MisReservas } from './features/reservas/mis-reservas/mis-reservas';
 import { MisConsultas } from './features/consultas/mis-consultas/mis-consultas';
 import { MisPagos } from './features/pagos/mis-pagos/mis-pagos';
+import { Dashboard } from './features/admin/dashboard/dashboard';
+import { Configuracion } from './features/admin/configuracion/configuracion';
 
 export const routes: Routes = [
     {
@@ -91,8 +93,13 @@ export const routes: Routes = [
 
       {
         path: '',
-        redirectTo: 'canchas',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
+      },
+
+      {
+        path: 'dashboard',
+        component: Dashboard
       },
 
       {
@@ -118,6 +125,11 @@ export const routes: Routes = [
       {
         path: 'consultas',
         component: Consultas
+      },
+
+      {
+        path: 'configuracion',
+        component: Configuracion
       }
 
     ]
