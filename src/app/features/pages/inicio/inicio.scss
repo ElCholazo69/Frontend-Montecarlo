@@ -166,8 +166,31 @@ main {
             }
         }
       }
+      .sinCanchas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin: 2rem auto;
+        padding: 2rem;
+
+        max-width: 500px;
+
+        background: white;
+        border-radius: 12px;
+        box-shadow: $sombra;
+
+        p {
+            margin: 0;
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            font-weight: 500;
+        }
+     }
 
   }
+  
 }
 
 @keyframes deslizar {

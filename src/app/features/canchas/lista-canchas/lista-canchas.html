@@ -1,20 +1,44 @@
 <main class="paginaCanchas">
+
   <h2>Nuestras Canchas</h2>
 
-  <div class="contenedorCanchas">
-    @for (item of canchas; track $index; let i = $index) {
-      @if (item.estado==true) {
-        <div class="tarjetaCancha" [style.animation-delay]="(i * 100) + 'ms'">
-        <img src="{{imagen}}" alt="Imagen de cancha deportiva">
-      
-        <div class="info">
-          <h3>{{item.nombre}}</h3>
-          <p>{{item.descripcion}}</p>
-          <span>S/. {{item.precioHora}} por hora</span>
-          <button (click)="irDetalles(item)">Reservar</button>
-        </div>
-      </div>
+  @if (cargando) {
+    
+  } @else if (hayCanchasDisponibles) {
+
+    <div class="contenedorCanchas">
+
+      @for (item of canchas; track $index; let i = $index) {
+
+        @if (item.estado) {
+
+          <div
+            class="tarjetaCancha"
+            [style.animation-delay]="(i * 100) + 'ms'">
+
+            <img [src]="imagen" alt="Imagen de cancha deportiva">
+
+            <div class="info">
+              <h3>{{ item.nombre }}</h3>
+              <p>{{ item.descripcion }}</p>
+              <span>S/. {{ item.precioHora }} por hora</span>
+              <button (click)="irDetalles(item)">Reservar</button>
+            </div>
+
+          </div>
+
+        }
+
       }
-    }
-  </div>
+
+    </div>
+
+  } @else {
+
+    <div class="sinCanchas">
+      <p>No hay canchas disponibles por el momento.</p>
+    </div>
+
+  }
+
 </main>

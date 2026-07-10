@@ -12,6 +12,8 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class ListaCanchas implements OnInit{
   canchas:Cancha[] = []
+  cargando = true;
+  hayCanchasDisponibles = false;
   imagen: string = "https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg";
 
   constructor(private canchaService:CanchaService, private router: Router, private authService: AuthService){}
@@ -20,9 +22,12 @@ export class ListaCanchas implements OnInit{
     this.canchaService.listarCanchas().subscribe({
       next: (data) =>{
         this.canchas=data
+        this.hayCanchasDisponibles = data.some(cancha => cancha.estado);
+        this.cargando = false;
       },
       error: (err) =>{
         console.error(err)
+        this.cargando = false;
       }
     })
   }

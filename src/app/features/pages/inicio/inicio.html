@@ -34,64 +34,76 @@
 
     <h2>Últimas canchas agregadas</h2>
 
-    <div class="slider">
+    @if (cargando) {
+    } @else if (hayCanchasDisponibles) {
 
-      <div class="slider-track">
+      <div class="slider">
 
-        @for (cancha of canchasDestacadas; track cancha.id) {
+        <div class="slider-track">
 
-          <div class="tarjeta-cancha">
+          @for (cancha of canchasDestacadas; track cancha.id) {
 
-            <img
-              src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg"
-              [alt]="cancha.nombre">
+            <div class="tarjeta-cancha">
 
-            <h3>{{ cancha.nombre }}</h3>
+              <img
+                src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg"
+                [alt]="cancha.nombre">
 
-            <p>{{ cancha.descripcion }}</p>
+              <h3>{{ cancha.nombre }}</h3>
 
-            <span>S/. {{ cancha.precioHora }} / hora</span>
+              <p>{{ cancha.descripcion }}</p>
 
-             <button
-              class="btn-reservar"
-              (click)="reservar(cancha)">
+              <span>S/. {{ cancha.precioHora }} / hora</span>
 
-              Reservar
+              <button
+                class="btn-reservar"
+                (click)="reservar(cancha)">
 
-            </button>
+                Reservar
 
-          </div>
+              </button>
 
-        }
+            </div>
 
-        @for (cancha of canchasDestacadas; track 'copia-' + cancha.id) {
+          }
 
-          <div class="tarjeta-cancha">
+          @for (cancha of canchasDestacadas; track 'copia-' + cancha.id) {
 
-            <img
-              src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg"
-              [alt]="cancha.nombre">
+            <div class="tarjeta-cancha">
 
-            <h3>{{ cancha.nombre }}</h3>
+              <img
+                src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg"
+                [alt]="cancha.nombre">
 
-            <p>{{ cancha.descripcion }}</p>
+              <h3>{{ cancha.nombre }}</h3>
 
-            <span>S/. {{ cancha.precioHora }} / hora</span>
-            
-            <button
-              class="btn-reservar"
-              (click)="reservar(cancha)">
+              <p>{{ cancha.descripcion }}</p>
 
-              Reservar
+              <span>S/. {{ cancha.precioHora }} / hora</span>
 
-            </button>
-          </div>
+              <button
+                class="btn-reservar"
+                (click)="reservar(cancha)">
 
-        }
+                Reservar
+
+              </button>
+
+            </div>
+
+          }
+
+        </div>
 
       </div>
 
-    </div>
+    } @else {
+
+      <div class="sinCanchas">
+        <p>No hay canchas disponibles por el momento.</p>
+      </div>
+
+    }
 
   </section>
 </main>

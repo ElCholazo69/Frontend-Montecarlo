@@ -12,6 +12,8 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class Inicio {
   canchasDestacadas: Cancha[] = []
+  hayCanchasDisponibles = false;
+  cargando = true;
   imagen: string = "https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg"
 
   constructor(private canchaService: CanchaService, private router: Router, private authService:AuthService){}
@@ -19,10 +21,17 @@ export class Inicio {
   ngOnInit(): void{
     this.canchaService.listarCanchas().subscribe({
       next: (canchas) =>{
-        this.canchasDestacadas = canchas.slice(-5).reverse()
+        this.canchasDestacadas = canchas.filter(cancha => cancha.estado).slice(-5).reverse();
+
+      this.hayCanchasDisponibles = this.canchasDestacadas.length > 0;
+
+      this.cargando = false;
+
+
       },
       error: (err) => {
         console.error(err)
+        this.cargando = false;
       }
     });
   }
