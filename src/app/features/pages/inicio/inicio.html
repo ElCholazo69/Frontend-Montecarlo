@@ -31,27 +31,67 @@
   </section>
 
   <section class="canchas">
-    <h2>Nuestras canchas</h2>
-  <!--
-    <div>
-      <div class="tarjeta">
-        <h3>Fútbol 7</h3>
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg" alt="cancha1">
-        <p>Ideal para partidos rápidos.<br>S/ 80 por hora</p>
+
+    <h2>Últimas canchas agregadas</h2>
+
+    <div class="slider">
+
+      <div class="slider-track">
+
+        @for (cancha of canchasDestacadas; track cancha.id) {
+
+          <div class="tarjeta-cancha">
+
+            <img
+              src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg"
+              [alt]="cancha.nombre">
+
+            <h3>{{ cancha.nombre }}</h3>
+
+            <p>{{ cancha.descripcion }}</p>
+
+            <span>S/. {{ cancha.precioHora }} / hora</span>
+
+             <button
+              class="btn-reservar"
+              (click)="reservar(cancha)">
+
+              Reservar
+
+            </button>
+
+          </div>
+
+        }
+
+        @for (cancha of canchasDestacadas; track 'copia-' + cancha.id) {
+
+          <div class="tarjeta-cancha">
+
+            <img
+              src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg"
+              [alt]="cancha.nombre">
+
+            <h3>{{ cancha.nombre }}</h3>
+
+            <p>{{ cancha.descripcion }}</p>
+
+            <span>S/. {{ cancha.precioHora }} / hora</span>
+            
+            <button
+              class="btn-reservar"
+              (click)="reservar(cancha)">
+
+              Reservar
+
+            </button>
+          </div>
+
+        }
+
       </div>
 
-      <div class="tarjeta">
-        <h3>Fútbol 11</h3>
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg" alt="cancha2">
-        <p>Perfecto para partidos completos.<br>S/ 150 por hora</p>
-      </div>
-
-      <div class="tarjeta">
-        <h3>Multideporte</h3>
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/000/104/368/small/free-soccer-field-vector.jpg" alt="cancha3">
-        <p>Vóley, básquet y más.<br>S/ 60 por hora</p>
-      </div>
     </div>
-    -->
+
   </section>
 </main>

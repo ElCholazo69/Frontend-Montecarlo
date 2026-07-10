@@ -14,12 +14,21 @@
         gap: 20px;
 
         .tarjetaCancha {
+            opacity: 0;
+            animation: aparecerTarjeta 0.6s ease forwards;
             background: white;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: $sombra;
             display: flex;
             flex-direction: column;
+
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+            &:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 24px rgba(0,0,0,.15);
+            }
 
             img {
                 width: 100%;
@@ -83,8 +92,27 @@
     .paginaCanchas {
         .contenedorCanchas {
             .tarjetaCancha {
-                width: 30%;
+                width: calc(33.333% - 20px);
             }
         }
     }
+}
+
+@keyframes aparecerTarjeta {
+
+    0% {
+        opacity: 0;
+        transform: scale(.8) translateY(20px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.03) translateY(-4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
 }

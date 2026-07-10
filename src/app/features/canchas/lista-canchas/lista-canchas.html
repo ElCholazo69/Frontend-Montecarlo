@@ -2,9 +2,9 @@
   <h2>Nuestras Canchas</h2>
 
   <div class="contenedorCanchas">
-    @for (item of canchas; track $index) {
+    @for (item of canchas; track $index; let i = $index) {
       @if (item.estado==true) {
-        <div class="tarjetaCancha">
+        <div class="tarjetaCancha" [style.animation-delay]="(i * 100) + 'ms'">
         <img src="{{imagen}}" alt="Imagen de cancha deportiva">
       
         <div class="info">
