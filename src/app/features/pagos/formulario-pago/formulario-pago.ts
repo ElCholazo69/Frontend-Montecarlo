@@ -92,13 +92,12 @@ export class FormularioPago implements OnInit{
 
       error: (error) => {
 
-        console.error(error);
-
-        if (error.error?.message) {
-          alert(error.error.message);
-        } else {
-          alert("No se pudo procesar el pago.");
+        if (error.status === 400) {
+          alert(error.error.mensaje);
+          return;
         }
+        
+        alert("No se pudo procesar el pago.");
 
       }
 

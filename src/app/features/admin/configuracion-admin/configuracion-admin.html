@@ -1,1 +1,139 @@
-<p>configuracion-admin works!</p>
+<div class="admin-contenedor">
+
+  <h1 class="panel-titulo">Panel de Administración</h1>
+
+  <div class="admin-seccion">
+    <a routerLink="/admin/dashboard" routerLinkActive="tab-activa" class="tab-link">Dashboard</a>
+    <a routerLink="/admin/canchas" routerLinkActive="tab-activa" class="tab-link">Canchas</a>
+    <a routerLink="/admin/reservas" routerLinkActive="tab-activa" class="tab-link">Reservas</a>
+    <a routerLink="/admin/usuarios" routerLinkActive="tab-activa" class="tab-link">Usuarios</a>
+    <a routerLink="/admin/consultas" routerLinkActive="tab-activa" class="tab-link">Consultas</a>
+    <a routerLink="/admin/configuracion" routerLinkActive="tab-activa" class="tab-link">Configuración</a>
+  </div>
+
+  <div class="admin-contenido">
+
+    <div class="contenido-configuracion">
+
+      <div class="formulario">
+
+        <h3>Configuración del Club</h3>
+
+        <form
+          class="form-configuracion"
+          [formGroup]="formConfiguracion">
+
+          <div class="campo">
+
+            <label for="horaApertura">
+              Hora de apertura
+            </label>
+
+            <input
+              id="horaApertura"
+              type="time"
+              formControlName="horaApertura"
+              [class.input-error]="
+                formConfiguracion.hasError('horarioInvalido') &&
+                formConfiguracion.get('horaApertura')?.value &&
+                formConfiguracion.get('horaCierre')?.value">
+
+            @if (formConfiguracion.get('horaApertura')?.touched &&
+                formConfiguracion.get('horaApertura')?.hasError('required')) {
+
+              <small>La hora de apertura es obligatoria.</small>
+
+            }
+
+          </div>
+
+          <div class="campo">
+
+            <label for="horaCierre">
+              Hora de cierre
+            </label>
+
+           <input
+            id="horaCierre"
+            type="time"
+            formControlName="horaCierre"
+            [class.input-error]="
+              formConfiguracion.hasError('horarioInvalido') &&
+              formConfiguracion.get('horaApertura')?.value &&
+              formConfiguracion.get('horaCierre')?.value">
+
+            @if (formConfiguracion.get('horaCierre')?.touched &&
+                formConfiguracion.get('horaCierre')?.hasError('required')) {
+
+              <small>La hora de cierre es obligatoria.</small>
+
+            }
+
+            @if (formConfiguracion.hasError('horarioInvalido')) {
+
+              <small>
+                La hora de cierre debe ser mayor que la hora de apertura.
+              </small>
+
+            }
+
+          </div>
+
+          <div class="campo">
+
+            <label for="intervaloReserva">
+              Intervalo de reserva
+            </label>
+
+            <select
+              id="intervaloReserva"
+              formControlName="intervaloReserva">
+
+              <option value="">
+                Seleccione...
+              </option>
+
+              <option [value]="30">
+                30 minutos
+              </option>
+
+              <option [value]="60">
+                60 minutos
+              </option>
+
+            </select>
+
+            @if (formConfiguracion.get('intervaloReserva')?.touched &&
+                formConfiguracion.get('intervaloReserva')?.hasError('required')) {
+
+              <small>Debe seleccionar un intervalo.</small>
+
+            }
+
+          </div>
+
+          <div class="acciones">
+
+            <button
+              type="button"
+              class="btn-guardar"
+              (click)="guardarConfiguracion()"
+              [disabled]="formConfiguracion.invalid">
+
+              Guardar configuración
+
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="imagen-configuracion"></div>
+
+    </div>
+
+  </div>
+
+</div>

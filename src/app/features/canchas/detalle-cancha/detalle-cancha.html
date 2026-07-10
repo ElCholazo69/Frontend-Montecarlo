@@ -27,21 +27,60 @@
 
         <div class="campo">
           <label>Hora inicio</label>
-          <input type="time" formControlName="horaInicio">
-            @if (formularioReserva.get('horaInicio')?.touched && formularioReserva.get('horaInicio')?.invalid) {
-                <small>Seleccione hora de inicio</small>
+
+          <select
+            formControlName="horaInicio"
+            [class.invalido]="formularioReserva.hasError('horarioInvalido')">
+
+            <option value="">Seleccione...</option>
+
+            @for (hora of horariosDisponibles; track hora) {
+              <option [value]="hora">{{ hora }}</option>
             }
+
+          </select>
+
+          @if (formularioReserva.get('horaInicio')?.touched &&
+              formularioReserva.get('horaInicio')?.hasError('required')) {
+
+            <small>Seleccione hora de inicio</small>
+
+          }
+
         </div>
 
         <div class="campo">
           <label>Hora fin</label>
-          <input type="time" formControlName="horaFin">
-            @if (formularioReserva.get('horaFin')?.touched && formularioReserva.get('horaFin')?.invalid) {
-                <small>Seleccione hora de fin</small>
+
+          <select
+            formControlName="horaFin"
+            [class.invalido]="formularioReserva.hasError('horarioInvalido')">
+
+            <option value="">Seleccione...</option>
+
+            @for (hora of horariosDisponibles; track hora) {
+              <option [value]="hora">{{ hora }}</option>
             }
+
+          </select>
+
+          @if (formularioReserva.get('horaFin')?.touched &&
+              formularioReserva.get('horaFin')?.hasError('required')) {
+
+            <small>Seleccione hora de fin</small>
+
+          }
+
+          @if (formularioReserva.hasError('horarioInvalido')) {
+
+            <small>La hora de fin debe ser mayor que la hora de inicio.</small>
+
+          }
+
         </div>
 
-        <button type="submit">Reservar</button>
+        <button type="submit"
+        [disabled]="formularioReserva.invalid">Reservar</button>
       </form>
     </div>
   </div>
