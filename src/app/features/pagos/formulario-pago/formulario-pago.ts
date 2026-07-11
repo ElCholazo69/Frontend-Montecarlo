@@ -18,6 +18,7 @@ export class FormularioPago implements OnInit{
   reserva?: Reserva;
   imagen: string = "";
   precioTotal: number = 0;
+  procesandoPago = false;
   
   ngOnInit(): void {
       if (!history.state.datosReserva) {
@@ -57,6 +58,12 @@ export class FormularioPago implements OnInit{
       return;
     }
 
+    if(this.procesandoPago){
+      return;
+    }
+
+    this.procesandoPago = true
+
     const pago: PagoRegistro = {
 
       canchaId: this.reserva!.canchaId,
@@ -80,17 +87,17 @@ export class FormularioPago implements OnInit{
 
     this.pagoService.procesarPago(pago).subscribe({
 
-      next: (respuesta) => {
+      next: () => {
 
         alert("Pago realizado correctamente.");
-
-        console.log(respuesta);
 
         this.router.navigate(['/reservas']);
 
       },
 
       error: (error) => {
+
+        this.procesandoPago = false
 
         if (error.status === 400) {
           alert(error.error.mensaje);

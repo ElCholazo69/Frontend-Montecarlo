@@ -15,6 +15,7 @@ export class Consultas {
   consultas: Consulta[] = [];
   consultaSeleccionada: Consulta | null = null;
   formRespuesta!: FormGroup;
+  procesandoRespuesta = false;
 
   constructor (private fb: FormBuilder, private consultaService : ConsultaService){}
 
@@ -74,20 +75,28 @@ export class Consultas {
 
   responderConsulta(): void {
 
+    if(this.procesandoRespuesta){
+      return;
+    }
+    
     if (this.formRespuesta.invalid || !this.consultaSeleccionada) {
       this.formRespuesta.markAllAsTouched();
       return;
     }
+    
+    this.procesandoRespuesta = true;
 
     this.consultaService.responderConsulta(this.consultaSeleccionada.id!,this.formRespuesta.value).subscribe({
       next: () => {
+        this.procesandoRespuesta = false;
         alert("La respuesta fue enviada correctamente al cliente.")
         this.listarConsultas();
         this.cerrarModal();
       },
       error: (err) => {
-        console.error(err);
+        this.procesandoRespuesta = false;
         alert("Ocurrió un error al enviar la respuesta.")
+        console.error(err);
       }
 
     });
