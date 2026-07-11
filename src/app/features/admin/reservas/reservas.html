@@ -32,8 +32,8 @@
         @for (item of listaReservas; track $index) {
           @if (esMayorFechaActual(item.fecha)) {
             <tr>
-              <td>{{obtenerUsuarioCancha(item.id!)?.usuario?.nombre}}</td>
-              <td>{{obtenerUsuarioCancha(item.id!)?.cancha?.nombre}}</td>
+              <td>{{obtenerUsuarioCancha(item.id!).usuario?.nombre}}</td>
+              <td>{{obtenerUsuarioCancha(item.id!).cancha?.nombre}}</td>
               <td>{{item.fecha}}</td>
               <td>{{formatearHora(item.horaInicio)}} - {{formatearHora(item.horaFin)}}</td>
               <td><span class="badge" [ngClass]="obtenerClaseEstado(item.estado)">{{item.estado}}</span></td>

@@ -49,9 +49,12 @@ export class Reservas implements OnInit{
 
   esMayorFechaActual(fecha: string): boolean {
     const hoy = new Date()
-    hoy.setHours(0, 0, 0, 0)
-    const fechaReserva = new Date(fecha)
-    return fechaReserva >= hoy
+    const año = hoy.getFullYear();
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    const fechaActual= `${año}-${mes}-${dia}`;
+    
+    return fecha >= fechaActual
   }
 
   obtenerClaseEstado(estado: String){
