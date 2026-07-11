@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { Inicio } from './features/pages/inicio/inicio';
-import { SobreNosotros } from './features/pages/sobre-nosotros/sobre-nosotros';
 
 import { Login } from './features/auth/login/login';
 
@@ -25,14 +24,9 @@ import { DashboardAdmin } from './features/admin/dashboard-admin/dashboard-admin
 import { ConfiguracionAdmin } from './features/admin/configuracion-admin/configuracion-admin';
 
 export const routes: Routes = [
-    {
+  {
     path: '',
     component: Inicio
-  },
-
-  {
-    path: 'sobre-nosotros',
-    component: SobreNosotros
   },
 
   {
@@ -135,8 +129,8 @@ export const routes: Routes = [
     ]
   },
 
-    {
-        path: '**',
-        redirectTo: ''
-    } 
+  {
+    path: '**',
+    redirectTo: ''
+  } 
 ];
