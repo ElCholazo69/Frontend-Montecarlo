@@ -27,36 +27,21 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td>Juan Pérez</td>
-          <td>juan.perez@correo.com</td>
-          <td>987654321</td>
-          <td><span class="badge disponible">CLIENTE</span></td>
-          <td>
-            <button class="btn-borrar" title="Eliminar Usuario">Eliminar</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>María Luján</td>
-          <td>maria.lujan@correo.com</td>
-          <td>951753456</td>
-          <td><span class="badge disponible">CLIENTE</span></td>
-          <td>
-            <button class="btn-borrar" title="Eliminar Usuario">Eliminar</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>Ricardo Gómez</td>
-          <td>ricardo.admin@canchas.com</td>
-          <td>963852741</td>
-          <td><span class="badge bloqueado">ADMIN</span></td>
-          <td>
-            <button class="btn-borrar" title="No puedes eliminar administradores" disabled>Eliminar</button>
-          </td>
-        </tr>
-        
+        @for (item of listaUsuarios; track $index) {
+          <tr>
+            <td>{{item.nombre}} {{item.apellido}}</td>
+            <td>{{item.correo}}</td>
+            <td>{{item.telefono}}</td>
+            <td><span class="badge" [ngClass]="obtenerClaseRol(item.rol)">{{item.rol}}</span></td>
+            <td>
+              @if (item.rol == "CLIENTE") {
+                <button class="btn-borrar" title="Eliminar Usuario" (click)="eliminarUsuario(item.id!)">Eliminar</button>
+              } @else {
+                <button class="btn-borrar" title="No puedes eliminar administradores" disabled>Eliminar</button>
+              }
+            </td>
+          </tr>
+        }   
       </tbody>
     </table>
   </div>
