@@ -309,6 +309,7 @@ header {
 
       .links.activo {
         display: flex;
+        z-index: 100;
       }
     }
   }

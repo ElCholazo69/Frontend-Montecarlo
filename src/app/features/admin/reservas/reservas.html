@@ -38,7 +38,7 @@
               <td>{{formatearHora(item.horaInicio)}} - {{formatearHora(item.horaFin)}}</td>
               <td><span class="badge" [ngClass]="obtenerClaseEstado(item.estado)">{{item.estado}}</span></td>
               <td>
-                <button class="btn-confirmar" title="Confirmar Reserva" (click)="cambiarEstadoComfirmado(item)" [class.btn-deshabilitado]="item.estado==='COMFIRMADA'">Aceptar</button>
+                <button class="btn-confirmar" title="Confirmar Reserva" (click)="cambiarEstadoComfirmado(item)" [class.btn-deshabilitado]="item.estado==='CONFIRMADA'">Aceptar</button>
                 <button class="btn-cancelar" title="Cancelar Reserva" (click)="cambiarEstadoCancelada(item)" [class.btn-deshabilitado]="item.estado==='CANCELADA'">Rechazar</button>
               </td>
             </tr>
