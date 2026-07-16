@@ -81,11 +81,9 @@
                   <td>{{obtenerUsuarioCancha(item.reservaId).usuario?.nombre}}</td>
                   <td><span class="badge confirmado">{{item.estado}}</span></td>
                   <td>
-                    {{obtenerUsuarioCancha(item.reservaId).reserva?.fecha}}
+                    {{item.fechaCambio | date:'dd/MM/yyyy'}}
                     <br>
-                    {{formatearHora(obtenerUsuarioCancha(item.reservaId).reserva?.horaInicio!)}}
-                    -
-                    {{formatearHora(obtenerUsuarioCancha(item.reservaId).reserva?.horaFin!)}}
+                    {{item.fechaCambio | date:'h:mm a'}}
                   </td>
                 </tr>
               }
